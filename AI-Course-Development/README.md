@@ -26,7 +26,7 @@ This repository houses three distinct but related AI training programs. Each is 
 - Week 3 — Skills, hooks, sentinel files, and governed multi-step workflows
 - Week 4 — Coaching readiness, resistance scenarios, artifact handoff, and certification gate
 
-**Entry point:** [`AI-Bootcamp/@Overview.md`](AI-Bootcamp/@Overview.md)
+**Entry point:** [`content/AI-Bootcamp/@Overview.md`](content/AI-Bootcamp/@Overview.md)
 
 ---
 
@@ -69,7 +69,7 @@ The program runs two 6-week loops (Foundation, Deepening) across six training se
 - **Adversarial agents** — AI prompts that challenge and critique the output of primary skills, catching semantic failures that deterministic checks cannot.
 - **Custom harnesses** — Python programs that orchestrate multiple model calls, pass artifacts between steps, evaluate each step, and manage multi-step workflows.
 
-**Entry point:** [`AI-Deep-Learning-Program/@Overview.md`](AI-Deep-Learning-Program/@Overview.md)
+**Entry point:** [`content/AI-Deep-Learning-Program/@Overview.md`](content/AI-Deep-Learning-Program/@Overview.md)
 
 ---
 
@@ -89,7 +89,7 @@ The program runs two 6-week loops (Foundation, Deepening) across six training se
 - Module 5 — Completion and Self-Assessment (3–4 hours)
 - Module 6 — Development Katas (ongoing)
 
-**Entry point:** [`AI-Self-Directed-Learning/@Overview.md`](AI-Self-Directed-Learning/@Overview.md)
+**Entry point:** [`content/AI-Self-Directed-Learning/@Overview.md`](content/AI-Self-Directed-Learning/@Overview.md)
 
 ---
 
@@ -130,38 +130,21 @@ All three programs are built on the same disciplines. These concepts are not pro
 
 ```
 AI-Course-Development/
-├── AI-Bootcamp/
-│   ├── @Overview.md
-│   ├── Week-1.md               # EDD + RTCC + Social Media Pipeline
-│   ├── Week-2.md               # SDLC Commands + Promptfoo Iteration
-│   ├── Week-3.md               # Skills, Hooks, Sentinel Files
-│   └── Week-4.md               # Coaching Readiness + Certification Gate
-│
-├── AI-Deep-Learning-Program/
-│   ├── @Overview.md
-│   ├── DLPv2-Plan.md            # DLP v2 major changes plan
-│   ├── Embedded Engineer/
-│   │   ├── 12-Week-Curriculum/ # Week-by-week EE curriculum
-│   │   └── EE-Implementation-Guide.md
-│   ├── Trainer/
-│   │   ├── Training-Sessions/  # Six session guides + deck prompt files (.deck.md)
-│   │   └── Trainer-Implementation-Guide.md
-│   ├── Account Manager or Executive Coach/
-│   │   └── AM-EC-Executive-Guidance.md
-│   └── Resources/
-│       ├── SDLC-Commands/      # SDLC skeleton skills for client codebases
-│       ├── Measures-and-Assessments/
-│       └── Sustainment/        # Post-program guidance by role
-│
-└── AI-Self-Directed-Learning/
-    ├── @Overview.md
-    ├── Module-1-EDD-and-RTCC/
-    ├── Module-2-Content-Pipeline/
-    ├── Module-3-SDLC-Commands/
-    ├── Module-4-Skills-Hooks-Governance/
-    ├── Module-5-Completion/
-    ├── Module-6-Development-Katas/
-    └── Resources/
+├── .agents/           # Agent skills and configuration
+├── content/           # All course content and materials
+│   ├── AI-Bootcamp/
+│   ├── AI-Deep-Learning-Program/
+│   ├── AI-Deep-Learning-Program-Stage-4/
+│   ├── AI-Self-Directed-Learning/
+│   ├── ai-certification-images/
+│   ├── ai-skills-branding/
+│   ├── Resources/
+│   ├── AI-Adoption-Maturity-Self-Assessment.md
+│   ├── Session-4-Hypothetical-Student-Evaluations.md
+│   └── trends.md
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
 
 ---
