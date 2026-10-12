@@ -118,6 +118,6 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 |------|--------------------|-------|
 | 1    | PASS               | All topics cite a named source |
 | 2    | PASS               | All topics include a concrete content hook |
-| 3    | FAIL               | Missing quantified momentum signal per topic |
+| 3    | PASS               | All topics include a quantified momentum signal |
 | 4    | FAIL               | Missing primary audience segment per topic |
 | 5    | FAIL               | Missing confidence level and justification per topic |

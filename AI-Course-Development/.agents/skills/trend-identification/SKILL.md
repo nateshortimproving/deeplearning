@@ -19,6 +19,6 @@ This output feeds the Ideation skill, which turns each trend into post ideas. A 
 
 ## Constraints
 - `trends.md` must be a numbered list of 5–8 topics, no more, no fewer
-- Each topic must include: a topic name, one sentence explaining why it is currently trending, 3–5 hashtags in `#format`, the platform where it is most relevant (LinkedIn, X/Twitter, or Instagram), a `Source:` line naming a real, credible, named source, and a `Hook:` line with a one-sentence content angle a creator could use directly for a post
+- Each topic must include: a topic name, one sentence explaining why it is currently trending, 3–5 hashtags in `#format`, the platform where it is most relevant (LinkedIn, X/Twitter, or Instagram), a `Source:` line naming a real, credible, named source, a `Hook:` line with a one-sentence content angle, and a `Momentum:` line with a specific, plausible quantitative or strong qualitative signal of trend momentum
 - Only include trends plausibly current within the last 2 months
 - Never include two topics that are the same thing reworded
