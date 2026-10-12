@@ -16,6 +16,26 @@
       "pass": true,
       "detail": "every topic names a platform"
     },
+    "source_citation_per_topic": {
+      "pass": true,
+      "detail": "every topic cites a named source"
+    },
+    "content_hook_per_topic": {
+      "pass": true,
+      "detail": "every topic includes a content hook"
+    },
+    "momentum_signal_per_topic": {
+      "pass": true,
+      "detail": "every topic quantifies momentum"
+    },
+    "audience_segment_per_topic": {
+      "pass": true,
+      "detail": "every topic identifies an audience segment"
+    },
+    "confidence_level_per_topic": {
+      "pass": true,
+      "detail": "every topic states High/Medium/Low confidence"
+    },
     "llm_judge_quality": {
       "pass": true,
       "detail": "All 5 trends sit at the AI x UX Design intersection, are distinct (adaptive UI, ChatGPT intelligent UI, AI-native patterns, agentic interfaces, anti-polish aesthetic), and plausibly current."
@@ -37,6 +57,26 @@
     "platform_per_topic": {
       "pass": true,
       "detail": "every topic names a platform"
+    },
+    "source_citation_per_topic": {
+      "pass": true,
+      "detail": "every topic cites a named source"
+    },
+    "content_hook_per_topic": {
+      "pass": true,
+      "detail": "every topic includes a content hook"
+    },
+    "momentum_signal_per_topic": {
+      "pass": true,
+      "detail": "every topic quantifies momentum"
+    },
+    "audience_segment_per_topic": {
+      "pass": true,
+      "detail": "every topic identifies an audience segment"
+    },
+    "confidence_level_per_topic": {
+      "pass": true,
+      "detail": "every topic states High/Medium/Low confidence"
     },
     "llm_judge_quality": {
       "pass": true,
@@ -60,6 +100,26 @@
       "pass": true,
       "detail": "every topic names a platform"
     },
+    "source_citation_per_topic": {
+      "pass": true,
+      "detail": "every topic cites a named source"
+    },
+    "content_hook_per_topic": {
+      "pass": true,
+      "detail": "every topic includes a content hook"
+    },
+    "momentum_signal_per_topic": {
+      "pass": true,
+      "detail": "every topic quantifies momentum"
+    },
+    "audience_segment_per_topic": {
+      "pass": true,
+      "detail": "every topic identifies an audience segment"
+    },
+    "confidence_level_per_topic": {
+      "pass": true,
+      "detail": "every topic states High/Medium/Low confidence"
+    },
     "llm_judge_quality": {
       "pass": true,
       "detail": "Six distinct NFL x AI trends; schedule-release videos and broadcast graphics backlash are related but genuinely different stories. All recent."
@@ -82,9 +142,29 @@
       "pass": true,
       "detail": "every topic names a platform"
     },
+    "source_citation_per_topic": {
+      "pass": true,
+      "detail": "every topic cites a named source"
+    },
+    "content_hook_per_topic": {
+      "pass": true,
+      "detail": "every topic includes a content hook"
+    },
+    "momentum_signal_per_topic": {
+      "pass": true,
+      "detail": "every topic quantifies momentum"
+    },
+    "audience_segment_per_topic": {
+      "pass": true,
+      "detail": "every topic identifies an audience segment"
+    },
+    "confidence_level_per_topic": {
+      "pass": true,
+      "detail": "every topic states High/Medium/Low confidence"
+    },
     "llm_judge_quality": {
-      "pass": false,
-      "detail": "Topic 5 (Gen Z discovers food trends on social media) is about social-media behavior, not AI \u2014 the only AI link is that 'AI platforms confirm' the stat. Fails subject fit."
+      "pass": true,
+      "detail": "All 5 trends are AI-in-food specific; topic 5 now centers on AI-powered personalized nutrition for Gen Z. Topics are distinct and plausibly current."
     }
   },
   "test-5-ai-minecraft": {
@@ -103,6 +183,26 @@
     "platform_per_topic": {
       "pass": true,
       "detail": "every topic names a platform"
+    },
+    "source_citation_per_topic": {
+      "pass": true,
+      "detail": "every topic cites a named source"
+    },
+    "content_hook_per_topic": {
+      "pass": true,
+      "detail": "every topic includes a content hook"
+    },
+    "momentum_signal_per_topic": {
+      "pass": true,
+      "detail": "every topic quantifies momentum"
+    },
+    "audience_segment_per_topic": {
+      "pass": true,
+      "detail": "every topic identifies an audience segment"
+    },
+    "confidence_level_per_topic": {
+      "pass": true,
+      "detail": "every topic states High/Medium/Low confidence"
     },
     "llm_judge_quality": {
       "pass": true,
