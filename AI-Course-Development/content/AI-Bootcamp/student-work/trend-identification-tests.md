@@ -116,7 +116,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 
 | Test | Result (pass/fail) | Notes |
 |------|--------------------|-------|
-| 1    | FAIL               | Missing named source citations per topic |
+| 1    | PASS               | All topics cite a named source |
 | 2    | FAIL               | Missing concrete content angle / hook per topic |
 | 3    | FAIL               | Missing quantified momentum signal per topic |
 | 4    | FAIL               | Missing primary audience segment per topic |
