@@ -1,0 +1,29 @@
+name: brand_color_guidance
+description: Verify the skill provides correct Improving brand colors when asked
+tags:
+  - happy_path
+  - correctness
+
+input:
+  user_message: "What are the primary brand colors for Improving? I need the hex codes for a PDF I'm building."
+
+assertions:
+  - type: contains
+    expected: "#005596"
+    weight: 1.0
+  - type: contains
+    expected: "#5BC2A7"
+    weight: 1.0
+  - type: contains
+    expected: "Poppins"
+    weight: 0.5
+  - type: not_contains
+    expected: "I don't know"
+    weight: 0.5
+  - type: llm_judge
+    prompt: >
+      Does the response accurately describe Improving's brand color palette
+      including primary blue and teal/green accent colors? Does it provide
+      actionable guidance for using these colors in a PDF?
+    threshold: 0.7
+    weight: 1.0

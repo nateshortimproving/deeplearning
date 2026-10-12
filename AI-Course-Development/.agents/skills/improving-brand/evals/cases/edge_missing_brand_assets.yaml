@@ -1,0 +1,24 @@
+name: edge_missing_brand_assets
+description: Verify the skill handles missing brand assets gracefully (e.g., fonts not installed)
+tags:
+  - edge_case
+  - error_handling
+
+input:
+  user_message: "I'm trying to generate a branded PDF but I don't have the Poppins or Khula fonts installed. What should I do?"
+
+assertions:
+  - type: regex_match
+    expected: "(?i)(google fonts|install|download)"
+    weight: 1.0
+  - type: not_contains
+    expected: "I can't help"
+    weight: 0.5
+  - type: llm_judge
+    prompt: >
+      The user is missing required brand fonts (Poppins and Khula). Does the
+      response: (1) acknowledge the issue, (2) provide clear instructions for
+      obtaining the fonts (they are Google Fonts), and (3) optionally suggest
+      fallback approaches? Score on helpfulness and accuracy.
+    threshold: 0.7
+    weight: 1.0

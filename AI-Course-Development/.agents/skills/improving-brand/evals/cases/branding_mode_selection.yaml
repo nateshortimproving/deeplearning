@@ -1,0 +1,25 @@
+name: branding_mode_selection
+description: Verify the skill correctly identifies when to use each branding mode (improving, client, co-branded)
+tags:
+  - happy_path
+  - correctness
+
+input:
+  user_message: "We're creating a handoff document that the client will own and use internally after our engagement ends. Should this use Improving branding or the client's branding?"
+
+assertions:
+  - type: regex_match
+    expected: "(?i)client"
+    weight: 1.0
+  - type: not_contains
+    expected: "improving branding"
+    weight: 0.8
+  - type: llm_judge
+    prompt: >
+      The correct answer is that a handoff document the client will own should
+      use the client's branding (branding mode: "client"), not Improving branding.
+      Does the response correctly identify this and explain why? Score 1.0 for
+      correct identification with good reasoning, 0.5 for correct but vague, 0.0
+      for incorrect.
+    threshold: 0.7
+    weight: 1.5

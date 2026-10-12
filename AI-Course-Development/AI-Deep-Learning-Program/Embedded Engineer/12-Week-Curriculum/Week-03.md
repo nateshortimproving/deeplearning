@@ -1,0 +1,87 @@
+# Week 3 — Loop 1: Development Team
+*Training Session 2 occurs this week*
+
+---
+
+## Focus
+Embedded Engineer transitions to the Development team. All participants attend Training Session 2 on The Development Loop. Development team begins using the `plan-story` and `implement-story` skeleton skills to iterate on the Plan → Code workflow. The SDLC skeleton skills were already introduced in Session 1 — this week is about building out `plan-story` and `implement-story` with real Context and Constraints. Sessions teach in the shared student workspace; the EE's job is to coach the transfer of these skills to the team's real codebase.
+
+---
+
+## Training Session This Week
+**Session-2 — The Development Loop: `plan-story` + `implement-story`** (4 hours, all participants)
+- The Development Loop: Plan → Code is the inner loop of development
+- Building out the `plan-story` skeleton skill: add Context (WHY we plan before coding, what a good plan enables) and Constraints (HOW the plan should be structured, what data from the story it needs)
+- Building out the `implement-story` skeleton skill: add Context (WHY we generate code from the plan not the story, what a good plan enables for code generation) and Constraints (HOW the code should be generated, language, framework, conventions)
+- EDD: write Evaluation Criteria (EC) before building out each skill
+- RTCC structure for both skills — WHO, WHAT, WHY, HOW
+- Lab: build out `plan-story` with EC, load-bearing audit
+- Lab: build out `implement-story` with EC, load-bearing audit
+- The epics-and-stories output from Session 1 is the input to `plan-story` — the chain continues
+- Plan quality dependency: a vague plan produces vague code; a specific plan produces specific code
+
+---
+
+## Embedded Engineer Focus (Development Team)
+
+- **Day 1:** Orient with the Dev team. Understand their current development practice — how do they plan implementations, what do they code from, what's the friction? Don't introduce anything yet. You're learning the real codebase context so you can help transfer workspace skills to it.
+- **Day 2:** Work with the Dev team on building out the `plan-story` and `implement-story` skeleton skills in the workspace. These were introduced in Session 1 — the Dev team saw the full pipeline. Now they add Context (WHY) and Constraints (HOW) using EDD discipline. Write EC before building. The skills are built against sample stories in the workspace.
+- **Days 3–4:** Transfer the skills to the real codebase. Pair with developers on real stories from the sprint, using the epics-and-stories output from the Product/Process team. Run `plan-story` on a real story (not a sample), evaluate the plan output against EC, then run `implement-story` with the plan output, evaluate the code against EC. The Plan → Code chain should be visible and real — the skills live in the workspace but are applied to real stories and real code.
+- **Day 5:** Check in with the Product/Process team: is the epics-and-stories output they're generating actually useful to developers for planning? Any adjustments needed based on what the Plan → Code workflow is revealing?
+
+**Key Embedded Engineer priority this week:** Establish the Plan → Code dependency as a concrete reality. The Dev team builds out `plan-story` and `implement-story` with real Context and Constraints in the workspace, then transfers them to real stories from the sprint. They see that plan quality determines code quality — first on sample stories, then on their own.
+
+---
+
+## SDLC Skeleton Skills — Building Out `plan-story` and `implement-story`
+
+The SDLC skeleton skills were introduced in Session 1. All 7 are skills with `disable-model-invocation: true` — RT-only stubs with Role and Task defined, Context and Constraints intentionally empty. This week, the Dev team builds out two of them:
+
+**`plan-story`:**
+- Add Context (WHY): Why we plan before coding, what a good plan enables for code generation, what problem we're solving
+- Add Constraints (HOW): How the plan should be structured, what data from the story it needs, what edge cases to consider
+- Write EC before building: What makes a good implementation plan? Specificity, edge case coverage, AC reference, file change awareness
+- Load-bearing audit after first successful run
+
+**`implement-story`:**
+- Add Context (WHY): Why we generate code from the plan not the story, what a good plan enables for code generation
+- Add Constraints (HOW): Language, framework, conventions, coding standards, what the code should look like
+- Write EC before building: What makes good code generation from a plan? Correctness, plan adherence, convention compliance, testability
+- Load-bearing audit after first successful run
+
+The `plan-story` output feeds into `implement-story` — the chain from Session 1 continues.
+
+---
+
+## Participant Activities (Development Team)
+- Attend Training Session 2
+- Examine 3+ stories with Acceptance Criteria generated by the Product/Process team
+- Build out `plan-story` with Context, Constraints, and EC
+- Build out `implement-story` with Context, Constraints, and EC
+- Run the Plan → Code chain on at least one real story; evaluate each step against EC
+
+## Participant Activities (Product/Process Team)
+- Continue refining `epics-and-stories` skill based on Week 2 observations
+- Review the `plan-story` skill built in Session 2 — does your epics-and-stories output give it what it needs?
+
+## Participant Activities (All)
+- Attend Training Session 2
+
+---
+
+## Artifacts Due by End of Week 3
+- [ ] Developers: `plan-story` skill built out (Context and Constraints added, EC written, load-bearing audit) — committed
+- [ ] Developers: `implement-story` skill built out (Context and Constraints added, EC written, load-bearing audit) — committed
+- [ ] Developers: Plan → Code chain run on at least one real story with EC scores noted
+- [ ] Product/Process team: refined `epics-and-stories` skill incorporating Week 2 feedback
+
+---
+
+## Embedded Engineer Coaching Notes
+
+- The Dev team will often find the Acceptance Criteria from Product insufficient for planning. This is useful signal, not a failure. Use it: "What would the AC need to say for you to plan from it?" Feed that back to the Product/Process team.
+- The Plan → Code chain is the core lesson. Watch for participants who skip the plan step and go straight to code generation. The discipline is: plan first, evaluate the plan, then generate code from the plan. If someone bypasses planning, redirect.
+- When building out the skeleton skills, resist the temptation to show polished versions. The point is to start from the RT-only stubs and add Context and Constraints using EDD — the gaps in the stub output are the Red state that drives iteration.
+- Some developers will be skeptical that AI can plan implementations for their codebase. That's a reasonable position — don't argue with it. Ask them to show you the hardest implementation they've done recently and start there. The transfer from workspace to real codebase is where this skepticism gets addressed — if the skill works on their real code, that's the argument.
+- Resist the temptation to generate code yourself in front of the Dev team without them actively driving. The Embedded Engineer's job is to coach the pairing, not to demonstrate.
+- **Transfer model note:** The skills are built in the workspace against sample stories. The Dev team's real codebase has different conventions, languages, and complexity. The transfer coaching this week is about adapting the skill's Context and Constraints from the sample domain to the real domain. Don't expect the workspace-built skill to work perfectly on the real codebase — the gaps are the coaching material.

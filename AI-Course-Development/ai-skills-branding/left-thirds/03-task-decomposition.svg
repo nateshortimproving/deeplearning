@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" width="320" height="540">
+<rect width="320" height="540" fill="#ffffff"></rect>
+<path d="M 18 18 V 460 A 22 22 0 0 0 40 482 H 302 V 60 L 260 18 Z" fill="none" stroke="#c99a2e" stroke-width="2"></path>
+<text x="160" y="230" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="220" fill="#c99a2e" opacity="0.1">3</text>
+<g transform="translate(96,206) scale(2)">
+    <path d="M 8 24 V 12 A 8 8 0 0 1 16 4 H 40 L 60 24 V 52 A 8 8 0 0 1 52 60 H 16 A 8 8 0 0 1 8 52 Z" fill="#c99a2e" stroke="#c99a2e" stroke-width="1.375"></path><line x1="40" y1="4" x2="60" y2="24" stroke="#c99a2e" stroke-width="1.375"></line>
+    <circle cx="32" cy="16" r="5" fill="#39312c"></circle>
+            <line x1="32" y1="21" x2="20" y2="38" stroke="#39312c" stroke-width="2.75" stroke-linecap="round"></line>
+            <line x1="32" y1="21" x2="32" y2="40" stroke="#39312c" stroke-width="2.75" stroke-linecap="round"></line>
+            <line x1="32" y1="21" x2="44" y2="38" stroke="#39312c" stroke-width="2.75" stroke-linecap="round"></line>
+            <circle cx="20" cy="42" r="4.5" fill="none" stroke="#39312c" stroke-width="2.5"></circle>
+            <circle cx="32" cy="44" r="4.5" fill="none" stroke="#39312c" stroke-width="2.5"></circle>
+            <circle cx="44" cy="42" r="4.5" fill="none" stroke="#39312c" stroke-width="2.5"></circle>
+</g>
+<text x="40" y="452" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="#c99a2e">SKILL 03</text>
+<text x="40" y="478" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="20" fill="#39312c">Task Decomposition</text>
+</svg>

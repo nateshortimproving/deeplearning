@@ -1,0 +1,28 @@
+name: pptx_template_guidance
+description: Verify the skill provides correct PPTX template selection and ghost text prevention guidance
+tags:
+  - happy_path
+  - correctness
+
+input:
+  user_message: "I need to build a PowerPoint presentation for a client proposal. Which template should I use and are there any gotchas?"
+
+assertions:
+  - type: regex_match
+    expected: "(?i)(primary|PRESO-THEME|template)"
+    weight: 1.0
+  - type: regex_match
+    expected: "(?i)(ghost text|placeholder|unused)"
+    weight: 1.0
+  - type: regex_match
+    expected: "(?i)(delete|remove)"
+    weight: 0.8
+  - type: llm_judge
+    prompt: >
+      For a client proposal PPTX, the correct template is the Primary template
+      (PRESO-THEME-WIDE-NOV 2025.pptx). A critical gotcha is ghost text from
+      unused placeholders that must be deleted from slide XML. Does the response
+      (1) recommend the primary template, (2) warn about ghost text, and
+      (3) provide actionable layout guidance? Score on completeness and accuracy.
+    threshold: 0.7
+    weight: 1.5

@@ -1,0 +1,45 @@
+flowchart TD
+    subgraph Upstream["Upstream — Demo Outputs (Pre-Generated)"]
+        PRD["create-prd\n→ prd.yaml"]
+        ARCH["create-architecture\n→ architecture.yaml"]
+        UX["create-ux\n→ ux.yaml"]
+    end
+
+    subgraph Loop1["Loop 1 — Skills Build (Sessions 1-3)"]
+        EPICS["create-epics-stories\nInput: prd + architecture + ux\nOutput: stories.yaml"]
+        PLAN["plan-story\nInput: stories.yaml\nOutput: plan.yaml\n(FAILS if stories.yaml missing)"]
+        IMPL["implement-story\nInput: plan.yaml\nOutput: code"]
+        REVIEW["review-implementation\nInput: stories.yaml + plan.yaml + code\nOutput: review.yaml\n(Updates stories.yaml review_status)"]
+    end
+
+    subgraph Loop2["Loop 2 — Deepening (Sessions 4-6)"]
+        EVAL["Python Evaluation Scripts\nRead: stories.yaml, plan.yaml\nCheck: EC against YAML outputs"]
+        ADV["Adversarial Agents\nRead: stories.yaml, plan.yaml\nChallenge: quality gaps"]
+        HARNESS["Custom Harness\nOrchestrates: all skills + YAMLs\nEvaluates: each step programmatically"]
+    end
+
+    PRD --> EPICS
+    ARCH --> EPICS
+    UX --> EPICS
+    EPICS -->|"stories.yaml"| PLAN
+    PLAN -->|"plan.yaml"| IMPL
+    IMPL -->|"code"| REVIEW
+    EPICS -.->|"stories.yaml"| REVIEW
+    PLAN -.->|"plan.yaml"| REVIEW
+    REVIEW -->|"updates stories.yaml\nreview_status: passed"| EPICS
+
+    EPICS -->|"stories.yaml"| EVAL
+    PLAN -->|"plan.yaml"| EVAL
+    EPICS -->|"stories.yaml"| ADV
+    PLAN -->|"plan.yaml"| ADV
+    EVAL --> HARNESS
+    ADV --> HARNESS
+    REVIEW -->|"review.yaml"| HARNESS
+
+    style Upstream fill:#e8f4f8,stroke:#2196F3
+    style Loop1 fill:#e8f5e9,stroke:#4CAF50
+    style Loop2 fill:#fff3e0,stroke:#FF9800
+    style EPICS fill:#c8e6c9,stroke:#4CAF50
+    style PLAN fill:#c8e6c9,stroke:#4CAF50
+    style IMPL fill:#c8e6c9,stroke:#4CAF50
+    style REVIEW fill:#c8e6c9,stroke:#4CAF50

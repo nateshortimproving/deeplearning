@@ -1,0 +1,16 @@
+# Eval configuration for the improving-brand skill
+skill_name: improving-brand
+skill_path: skills/improving-brand
+
+# Models to evaluate against (array). If omitted, uses SKILL.md model or default.
+# CLI --model overrides this for migration testing.
+models:
+  - claude-sonnet-4-20250514
+
+runs_per_case: 3
+timeout_seconds: 120
+
+scoring_weights:
+  correctness: 0.5
+  completeness: 0.3
+  formatting: 0.2

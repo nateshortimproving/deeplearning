@@ -1,0 +1,34 @@
+name: pdf_layout_instructions
+description: Verify the skill provides correct PDF layout guidance including title page and interior pages
+tags:
+  - happy_path
+  - completeness
+
+input:
+  user_message: "I need to create a branded PDF assessment report for a client called Acme Corp. Walk me through the layout I should use."
+
+assertions:
+  - type: contains
+    expected: "title page"
+    weight: 1.0
+  - type: contains
+    expected: "gradient"
+    weight: 0.8
+  - type: regex_match
+    expected: "(?i)(header|footer)"
+    weight: 0.8
+  - type: regex_match
+    expected: "(?i)(logo|improving)"
+    weight: 0.5
+  - type: regex_match
+    expected: "(?i)(poppins|khula)"
+    weight: 0.5
+  - type: llm_judge
+    prompt: >
+      Does the response provide a complete, actionable PDF layout guide that
+      covers: (1) a branded title page with gradient background, (2) interior
+      page structure with headers/footers, (3) font specifications, (4) color
+      usage, and (5) professional formatting suitable for a client deliverable?
+      Score 0.0-1.0 on completeness and actionability.
+    threshold: 0.75
+    weight: 1.5

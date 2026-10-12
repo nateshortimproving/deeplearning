@@ -1,0 +1,8 @@
+flowchart LR
+    create-prd --> create-epics-stories
+    create-architecture --> create-epics-stories
+    create-ux --> create-epics-stories
+    create-epics-stories --> plan-story
+    plan-story --> implement-story
+    implement-story --> review-implementation
+    review-implementation -->|Next Story| plan-story
