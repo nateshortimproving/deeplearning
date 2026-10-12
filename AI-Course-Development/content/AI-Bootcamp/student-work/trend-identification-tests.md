@@ -13,6 +13,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic notes which platform it's relevant on as its source.
 * Each topic includes a brief explanation of why it's trending.
 * Each topic has 3–5 hashtags in #format
+* Each topic cites at least one real, named source (publication, report, platform trend tool, or credible expert) supporting the claim that it is trending.
 
 - **Fail if:** 
 * The trends are not specific to UX Design and AI.
@@ -21,6 +22,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic does not include a brief explanation of why it's trending.
 * Each topic does not have 3–5 hashtags in #format
 * Any two topics are the same thing reworded
+* Any topic does not cite a real, named source supporting why it is trending
 
 ## Test 2
 - **Input:** "Identify trending topics in AI on social media. Subject: AI in Music"
@@ -106,7 +108,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 
 | Test | Result (pass/fail) | Notes |
 |------|--------------------|-------|
-| 1    | PASS               | 5 numbered topics, all fields present |
+| 1    | FAIL               | Missing named source citations per topic |
 | 2    | PASS               | 5 numbered topics, all fields present |
 | 3    | PASS               | 6 topics, all fields present |
 | 4    | PASS               | 5 numbered topics, all fields present |
