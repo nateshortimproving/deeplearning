@@ -1,0 +1,112 @@
+{
+  "test-1-ai-ux-design": {
+    "topic_count_in_range": {
+      "pass": true,
+      "detail": "5 topics (need 5-8)"
+    },
+    "hashtags_per_topic": {
+      "pass": true,
+      "detail": "all topics have 3-5 hashtags"
+    },
+    "rationale_per_topic": {
+      "pass": true,
+      "detail": "every topic has a why-trending line"
+    },
+    "platform_per_topic": {
+      "pass": true,
+      "detail": "every topic names a platform"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "All 5 trends sit at the AI x UX Design intersection, are distinct (adaptive UI, ChatGPT intelligent UI, AI-native patterns, agentic interfaces, anti-polish aesthetic), and plausibly current."
+    }
+  },
+  "test-2-ai-music": {
+    "topic_count_in_range": {
+      "pass": true,
+      "detail": "5 topics (need 5-8)"
+    },
+    "hashtags_per_topic": {
+      "pass": true,
+      "detail": "all topics have 3-5 hashtags"
+    },
+    "rationale_per_topic": {
+      "pass": true,
+      "detail": "every topic has a why-trending line"
+    },
+    "platform_per_topic": {
+      "pass": true,
+      "detail": "every topic names a platform"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "All trends are AI-in-music specific; topics 4 and 5 both concern industry backlash but are distinct angles (platform policy vs. cultural commentary)."
+    }
+  },
+  "test-3-ai-nfl": {
+    "topic_count_in_range": {
+      "pass": true,
+      "detail": "6 topics (need 5-8)"
+    },
+    "hashtags_per_topic": {
+      "pass": true,
+      "detail": "all topics have 3-5 hashtags"
+    },
+    "rationale_per_topic": {
+      "pass": true,
+      "detail": "every topic has a why-trending line"
+    },
+    "platform_per_topic": {
+      "pass": true,
+      "detail": "every topic names a platform"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "Six distinct NFL x AI trends; schedule-release videos and broadcast graphics backlash are related but genuinely different stories. All recent."
+    }
+  },
+  "test-4-ai-food": {
+    "topic_count_in_range": {
+      "pass": true,
+      "detail": "5 topics (need 5-8)"
+    },
+    "hashtags_per_topic": {
+      "pass": true,
+      "detail": "all topics have 3-5 hashtags"
+    },
+    "rationale_per_topic": {
+      "pass": true,
+      "detail": "every topic has a why-trending line"
+    },
+    "platform_per_topic": {
+      "pass": true,
+      "detail": "every topic names a platform"
+    },
+    "llm_judge_quality": {
+      "pass": false,
+      "detail": "Topic 5 (Gen Z discovers food trends on social media) is about social-media behavior, not AI \u2014 the only AI link is that 'AI platforms confirm' the stat. Fails subject fit."
+    }
+  },
+  "test-5-ai-minecraft": {
+    "topic_count_in_range": {
+      "pass": true,
+      "detail": "5 topics (need 5-8)"
+    },
+    "hashtags_per_topic": {
+      "pass": true,
+      "detail": "all topics have 3-5 hashtags"
+    },
+    "rationale_per_topic": {
+      "pass": true,
+      "detail": "every topic has a why-trending line"
+    },
+    "platform_per_topic": {
+      "pass": true,
+      "detail": "every topic names a platform"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "All five are genuinely AI-in-Minecraft (AgentCraft NPCs, multi-agent coding, AI modding, generative co-creation); Tweetcraft is the weakest AI link but still AI-powered."
+    }
+  }
+}

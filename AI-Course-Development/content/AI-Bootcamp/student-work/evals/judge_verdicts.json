@@ -1,0 +1,37 @@
+{
+  "test-1-ai-ux-design": {
+    "pass": true,
+    "subject_fit": true,
+    "no_duplicates": true,
+    "currency": true,
+    "notes": "All 5 trends sit at the AI x UX Design intersection, are distinct (adaptive UI, ChatGPT intelligent UI, AI-native patterns, agentic interfaces, anti-polish aesthetic), and plausibly current."
+  },
+  "test-2-ai-music": {
+    "pass": true,
+    "subject_fit": true,
+    "no_duplicates": true,
+    "currency": true,
+    "notes": "All trends are AI-in-music specific; topics 4 and 5 both concern industry backlash but are distinct angles (platform policy vs. cultural commentary)."
+  },
+  "test-3-ai-nfl": {
+    "pass": true,
+    "subject_fit": true,
+    "no_duplicates": true,
+    "currency": true,
+    "notes": "Six distinct NFL x AI trends; schedule-release videos and broadcast graphics backlash are related but genuinely different stories. All recent."
+  },
+  "test-4-ai-food": {
+    "pass": false,
+    "subject_fit": false,
+    "no_duplicates": true,
+    "currency": true,
+    "notes": "Topic 5 (Gen Z discovers food trends on social media) is about social-media behavior, not AI — the only AI link is that 'AI platforms confirm' the stat. Fails subject fit."
+  },
+  "test-5-ai-minecraft": {
+    "pass": true,
+    "subject_fit": true,
+    "no_duplicates": true,
+    "currency": true,
+    "notes": "All five are genuinely AI-in-Minecraft (AgentCraft NPCs, multi-agent coding, AI modding, generative co-creation); Tweetcraft is the weakest AI link but still AI-powered."
+  }
+}
