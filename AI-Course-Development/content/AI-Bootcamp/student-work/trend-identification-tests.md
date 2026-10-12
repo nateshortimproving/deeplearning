@@ -52,6 +52,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic notes which platform it's relevant on as its source.
 * Each topic includes a brief explanation of why it's trending.
 * Each topic has 3–5 hashtags in #format
+* Each topic quantifies trend momentum with a specific, plausible signal (e.g., percentage growth in mentions, size of a growing community, or number of major publications covering it this month).
 - **Fail if:** 
 * The trends are not specific to NFL and AI.
 * The trends are not provided in a numbered list of 5–8 topics.
@@ -59,6 +60,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic does not include a brief explanation of why it's trending.
 * Each topic does not have 3–5 hashtags in #format
 * Any two topics are the same thing reworded
+* Any topic lacks a specific, plausible quantified signal of momentum
 
 ## Test 4
 - **Input:** "Identify trending topics in AI on social media. Subject: AI in Food"
@@ -112,6 +114,6 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 |------|--------------------|-------|
 | 1    | FAIL               | Missing named source citations per topic |
 | 2    | FAIL               | Missing concrete content angle / hook per topic |
-| 3    | PASS               | 6 topics, all fields present |
+| 3    | FAIL               | Missing quantified momentum signal per topic |
 | 4    | PASS               | 5 numbered topics, all fields present |
 | 5    | PASS               | 5 numbered topics, all fields present |
