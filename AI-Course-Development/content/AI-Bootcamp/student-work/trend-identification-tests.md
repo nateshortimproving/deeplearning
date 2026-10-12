@@ -33,6 +33,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic notes which platform it's relevant on as its source.
 * Each topic includes a brief explanation of why it's trending.
 * Each topic has 3–5 hashtags in #format
+* Each topic includes a concrete content angle or hook (one sentence) that a creator could use directly for a post.
 - **Fail if:** 
 * The trends are not specific to Music and AI.
 * The trends are not provided in a numbered list of 5–8 topics.
@@ -40,6 +41,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic does not include a brief explanation of why it's trending.
 * Each topic does not have 3–5 hashtags in #format
 * Any two topics are the same thing reworded
+* Any topic does not include a concrete content angle or hook
 
 ## Test 3
 - **Input:** "Identify trending topics in AI on social media. Subject: AI in the NFL"
@@ -109,7 +111,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 | Test | Result (pass/fail) | Notes |
 |------|--------------------|-------|
 | 1    | FAIL               | Missing named source citations per topic |
-| 2    | PASS               | 5 numbered topics, all fields present |
+| 2    | FAIL               | Missing concrete content angle / hook per topic |
 | 3    | PASS               | 6 topics, all fields present |
 | 4    | PASS               | 5 numbered topics, all fields present |
 | 5    | PASS               | 5 numbered topics, all fields present |
