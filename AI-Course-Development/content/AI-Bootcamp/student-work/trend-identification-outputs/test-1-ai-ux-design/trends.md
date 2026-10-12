@@ -8,6 +8,7 @@
    - Hook: "The screen is dead — here's how adaptive AI interfaces are reshaping UX design in real time."
    - Momentum: LinkedIn mentions of "adaptive UI" and "generative UI" grew 140% MoM in UX design conversations (Aug–Sept 2026).
    - Audience: Product designers and design-system leads at B2B SaaS companies
+   - Confidence: High — NNG research and sustained LinkedIn conversation growth provide strong evidence.
 
 2. **Intelligent UI in ChatGPT**
    - Why trending: OpenAI's GPT-6 introduced "Intelligent UI," generating interactive charts, forms, and visual responses directly inside conversations.
@@ -17,6 +18,7 @@
    - Hook: "ChatGPT just turned prompts into dashboards — and it changes everything about conversational UX."
    - Momentum: OpenAI reported 3M+ Canvas interactions in the first 10 days after Intelligent UI launched.
    - Audience: AI product designers and conversational-UX specialists
+   - Confidence: High — directly tied to a named product launch with published usage metrics.
 
 3. **AI-Native UX Patterns**
    - Why trending: Product teams are adopting context-first, guided prompting, progressive disclosure, and trust-and-transparency layers for AI-powered products.
@@ -26,6 +28,7 @@
    - Hook: "If you're still porting old UI patterns into AI products, your users can tell — here's the pattern library that fixes it."
    - Momentum: "AI-native UX" has been referenced in 450+ design-system GitHub commits and Figma community files since July 2026.
    - Audience: UX designers building AI-native SaaS and enterprise products
+   - Confidence: Medium — strong community signals but mostly practitioner discourse rather than controlled research.
 
 4. **Agentic Interfaces**
    - Why trending: UX is shifting toward agentic systems that take action on behalf of users, requiring new patterns for control, feedback, and recovery.
@@ -35,6 +38,7 @@
    - Hook: "AI agents are doing things for users now — the UX problem isn't automation, it's trust and recovery."
    - Momentum: Agentic UX posts on X averaged 12K impressions per thread in September 2026, up from 3K in June.
    - Audience: UX researchers and designers working on AI agent products
+   - Confidence: Medium — academic and practitioner interest is clear, but production adoption is still early.
 
 5. **Authenticity Over Polish**
    - Why trending: As AI makes flawless visuals effortless, social media design is swinging back to intentionally imperfect, human-feeling content.
@@ -44,3 +48,4 @@
    - Hook: "Imperfect is the new premium: why AI-perfect design is already starting to feel dated."
    - Momentum: Instagram Reels tagged #authenticityoverai grew 85% in engagement between August and September 2026.
    - Audience: Social media creators and brand designers on Instagram
+   - Confidence: Medium — engagement growth is visible, but the trend is partly stylistic and harder to isolate from broader anti-AI sentiment.

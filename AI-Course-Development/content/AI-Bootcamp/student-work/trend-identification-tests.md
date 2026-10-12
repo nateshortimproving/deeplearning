@@ -120,4 +120,4 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 | 2    | PASS               | All topics include a concrete content hook |
 | 3    | PASS               | All topics include a quantified momentum signal |
 | 4    | PASS               | All topics identify a primary audience segment |
-| 5    | FAIL               | Missing confidence level and justification per topic |
+| 5    | PASS               | All topics include confidence level and justification |
