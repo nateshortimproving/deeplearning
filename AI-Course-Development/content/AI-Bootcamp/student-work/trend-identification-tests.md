@@ -90,6 +90,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic notes which platform it's relevant on as its source.
 * Each topic includes a brief explanation of why it's trending.
 * Each topic has 3–5 hashtags in #format
+* Each topic includes a confidence level (High / Medium / Low) with a one-sentence justification tied to recency or strength of evidence.
 - **Fail if:** 
 * The trends are not specific to Minecraft and AI.
 * The trends are not provided in a numbered list of 5–8 topics.
@@ -97,6 +98,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic does not include a brief explanation of why it's trending.
 * Each topic does not have 3–5 hashtags in #format
 * Any two topics are the same thing reworded
+* Any topic does not include a confidence level with a one-sentence justification
 
 ---
 
@@ -118,4 +120,4 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 | 2    | FAIL               | Missing concrete content angle / hook per topic |
 | 3    | FAIL               | Missing quantified momentum signal per topic |
 | 4    | FAIL               | Missing primary audience segment per topic |
-| 5    | PASS               | 5 numbered topics, all fields present |
+| 5    | FAIL               | Missing confidence level and justification per topic |
