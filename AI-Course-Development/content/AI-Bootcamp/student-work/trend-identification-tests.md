@@ -71,6 +71,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic notes which platform it's relevant on as its source.
 * Each topic includes a brief explanation of why it's trending.
 * Each topic has 3–5 hashtags in #format
+* Each topic identifies the primary audience segment most likely to engage with the trend (e.g., home cooks, restaurant operators, food-tech investors).
 - **Fail if:** 
 * The trends are not specific to Food and AI.
 * The trends are not provided in a numbered list of 5–8 topics.
@@ -78,6 +79,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic does not include a brief explanation of why it's trending.
 * Each topic does not have 3–5 hashtags in #format
 * Any two topics are the same thing reworded
+* Any topic does not identify a clear primary audience segment
 
 ## Test 5
 - **Input:** "Identify trending topics in AI on social media. Subject: AI in Minecraft"
@@ -115,5 +117,5 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 | 1    | FAIL               | Missing named source citations per topic |
 | 2    | FAIL               | Missing concrete content angle / hook per topic |
 | 3    | FAIL               | Missing quantified momentum signal per topic |
-| 4    | PASS               | 5 numbered topics, all fields present |
+| 4    | FAIL               | Missing primary audience segment per topic |
 | 5    | PASS               | 5 numbered topics, all fields present |
