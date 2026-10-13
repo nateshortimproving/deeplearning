@@ -233,6 +233,26 @@ After tightening the five test cases so the existing skill output failed, the ev
 
 **Step 2 — Context addition (measured):** Restored `## Role` and rewrote `## Context` around verifiability ("every claim must be checkable"). Delta: **0/13 checks moved** — deterministic checks are blind to WHY-layer text; only a live judge could measure it. A zero delta is evidence of the evaluator's boundary, not that Context does nothing.
 
+*EC-by-EC, Context addition (all cases; before → after):*
+
+| Check | test-1 | test-2 | test-3 | test-4 | test-5 |
+|-------|--------|--------|--------|--------|--------|
+| topic_count_in_range | P→P | P→P | P→P | P→P | P→P |
+| hashtags_per_topic | P→P | P→P | P→P | P→P | P→P |
+| rationale_per_topic | P→P | P→P | P→P | P→P | P→P |
+| platform_per_topic | P→P | P→P | P→P | P→P | P→P |
+| source_citation_per_topic | P→P | P→P | P→P | P→P | P→P |
+| content_hook_per_topic | P→P | P→P | P→P | P→P | P→P |
+| momentum_signal_per_topic | P→P | P→P | P→P | P→P | P→P |
+| audience_segment_per_topic | P→P | P→P | P→P | P→P | P→P |
+| confidence_level_per_topic | P→P | P→P | P→P | P→P | P→P |
+| source_recency_per_topic | P→P | P→P | P→P | P→P | P→P |
+| hashtag_diversity | P→P | P→P | P→P | P→P | P→P |
+| momentum_attribution | P→P | P→P | P→P | P→P | P→P |
+| llm_judge_quality | P→P | P→P | P→P | P→P | P→P |
+
+Zero movement on every cell — the measured proof that deterministic checks cannot see WHY-layer changes.
+
 **Step 3 — Constraint addition (measured):**
 - *Constraint:* `Audience:` segment must be specific to the subject domain (e.g., "modded Minecraft players", not "gamers").
 - *Check added:* `audience_domain_specific` — subject-keyword heuristic per case.
@@ -240,6 +260,27 @@ After tightening the five test cases so the existing skill output failed, the ev
 - *After skill constraint + output fixes:* 5/5 at 14/14.
 
 **Delta:** audience_domain_specific FAIL→PASS on 2 cases; +1 check suite-wide; no collateral movement.
+
+*EC-by-EC, Constraint addition (before output fix → after):*
+
+| Check | test-1 | test-2 | test-3 | test-4 | test-5 |
+|-------|--------|--------|--------|--------|--------|
+| topic_count_in_range | P→P | P→P | P→P | P→P | P→P |
+| hashtags_per_topic | P→P | P→P | P→P | P→P | P→P |
+| rationale_per_topic | P→P | P→P | P→P | P→P | P→P |
+| platform_per_topic | P→P | P→P | P→P | P→P | P→P |
+| source_citation_per_topic | P→P | P→P | P→P | P→P | P→P |
+| content_hook_per_topic | P→P | P→P | P→P | P→P | P→P |
+| momentum_signal_per_topic | P→P | P→P | P→P | P→P | P→P |
+| audience_segment_per_topic | P→P | P→P | P→P | P→P | P→P |
+| confidence_level_per_topic | P→P | P→P | P→P | P→P | P→P |
+| source_recency_per_topic | P→P | P→P | P→P | P→P | P→P |
+| hashtag_diversity | P→P | P→P | P→P | P→P | P→P |
+| momentum_attribution | P→P | P→P | P→P | P→P | P→P |
+| llm_judge_quality | P→P | P→P | P→P | P→P | P→P |
+| **audience_domain_specific** | P→P | **F→P** | P→P | P→P | **F→P** |
+
+Target EC moved on test-2 and test-5; no collateral movement anywhere — the signature of a well-scoped constraint.
 
 **Step 4 — Structural audit:** every instruction sits in its correct RTCC section — Role (persona), Task (deliverable), Context (rationale), Constraints (output requirements). The Context's verifiability clause borders on HOW but functions as motivation; retained there intentionally. No moves required.
 
