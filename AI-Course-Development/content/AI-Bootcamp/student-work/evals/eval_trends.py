@@ -33,6 +33,7 @@ Usage:
   python3 eval_trends.py --write-judge-prompts    # emit judge_prompts.md
 """
 
+import datetime
 import json
 import os
 import re
@@ -54,6 +55,25 @@ AUDIENCE_LINE_RE = re.compile(r"(?im)^\s*-?\s*audience\s*:\s*(\S.*)$")
 CONFIDENCE_LINE_RE = re.compile(r"(?im)^\s*-?\s*confidence\s*:\s*(high|medium|low)\b.*$")
 
 HASHTAG_RE = re.compile(r"#[A-Za-z0-9_]+")
+
+TODAY = datetime.date.today()
+RECENCY_WINDOW = datetime.timedelta(days=62)  # ~2 months
+
+MONTHS = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+# "October 2026", "Oct 12, 2026", "Oct 12 2026" — day optional
+MONTH_DATE_RE = re.compile(
+    r"\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?"
+    r"|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)"
+    r"\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})"
+    r"|\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?"
+    r"|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)"
+    r"\.?\s+(\d{4})\b",
+    re.I,
+)
+ISO_DATE_RE = re.compile(r"\b(\d{4})-(\d{1,2})-(\d{1,2})\b")
 
 # The rubric text sent to the LLM judge. Built directly from the most
 # qualitative Expected Criteria in the hand-written test file.
@@ -157,6 +177,102 @@ def check_audience_segment(topics):
     return not bad, ("missing audience segment on topics " + ", ".join(map(str, bad))) if bad else "every topic identifies an audience segment"
 
 
+def _parse_source_date(line):
+    """Return (start, end) dates the source's date could refer to, or None.
+
+    Month+year only (e.g., "October 2026") returns the whole month span; the
+    caller treats it as in-window if ANY part of that month overlaps the
+    2-month window.
+    """
+    m = ISO_DATE_RE.search(line)
+    if m:
+        y, mo, d = map(int, m.groups())
+        try:
+            dt = datetime.date(y, mo, d)
+            return dt, dt
+        except ValueError:
+            return None
+    m = MONTH_DATE_RE.search(line)
+    if m:
+        if m.group(4):  # month + year only
+            name = m.group(4).lower()
+            mon = 9 if name.startswith("sept") else MONTHS[name[:3]]
+            y = int(m.group(5))
+            start = datetime.date(y, mon, 1)
+            end = (datetime.date(y, 12, 31) if mon == 12
+                   else datetime.date(y, mon + 1, 1) - datetime.timedelta(days=1))
+            return start, end
+        name = m.group(1).lower()
+        mon = 9 if name.startswith("sept") else MONTHS[name[:3]]
+        d, y = int(m.group(2)), int(m.group(3))
+        try:
+            dt = datetime.date(y, mon, d)
+            return dt, dt
+        except ValueError:
+            return None
+    return None
+
+
+# Provenance markers: someone/something named as the measurer of the signal.
+ATTRIBUTION_RE = re.compile(
+    r"\bper\b|according to|reported|survey|study|index|data|found|"
+    r"measured|tracking|analytics|analysis by|audit",
+    re.I,
+)
+
+
+def check_momentum_attribution(topics):
+    bad = []
+    for i, t in enumerate(topics, 1):
+        m = MOMENTUM_LINE_RE.search(t)
+        if not m:
+            bad.append(f"topic {i} has no momentum line")
+        elif not ATTRIBUTION_RE.search(m.group(1)):
+            bad.append(f"topic {i} momentum has no named measurer")
+    return not bad, ("; ".join(bad) if bad
+                     else "every momentum signal names a measurer")
+
+
+def check_hashtag_diversity(topics):
+    # Per-topic hashtag lists, counted from the Hashtags line only.
+    per_topic = []
+    for t in topics:
+        line = next((l for l in t.splitlines() if "hashtag" in l.lower()), t)
+        per_topic.append(set(t.lower() for t in HASHTAG_RE.findall(line)))
+    counts = {}
+    for tags in per_topic:
+        for tag in tags:
+            counts[tag] = counts.get(tag, 0) + 1
+    if not counts:
+        return False, "no hashtags found"
+    primary = max(counts, key=counts.get)
+    overused = {t: n for t, n in counts.items() if t != primary and n > 1}
+    if primary and counts[primary] < 3:
+        return False, f"no shared primary tag (most common: {primary} on {counts[primary]} topics)"
+    return (not overused,
+            "secondary tags repeated: " + "; ".join(f"{t} on {n} topics" for t, n in overused.items())
+            if overused else f"primary {primary} shared; all secondary tags unique")
+
+
+def check_source_recency(topics):
+    bad = []
+    for i, t in enumerate(topics, 1):
+        m = SOURCE_LINE_RE.search(t)
+        if not m:
+            bad.append(f"topic {i} has no source line")
+            continue
+        span = _parse_source_date(m.group(1))
+        if span is None:
+            bad.append(f"topic {i} source has no month+year date")
+        else:
+            start, end = span
+            # In-window if any part of the date span touches
+            # [TODAY - 62 days, TODAY]; far-future dates still fail.
+            if end < TODAY - RECENCY_WINDOW or start > TODAY:
+                bad.append(f"topic {i} source dated {start.isoformat()} (outside 2-month window)")
+    return not bad, "; ".join(bad) if bad else "every source carries an in-window date"
+
+
 def check_confidence_level(topics):
     bad = [i for i, t in enumerate(topics, 1)
            if not CONFIDENCE_LINE_RE.search(t)]
@@ -206,6 +322,9 @@ def evaluate(case_name, path):
         "momentum_signal_per_topic": check_momentum_signal(topics),
         "audience_segment_per_topic": check_audience_segment(topics),
         "confidence_level_per_topic": check_confidence_level(topics),
+        "source_recency_per_topic": check_source_recency(topics),
+        "hashtag_diversity": check_hashtag_diversity(topics),
+        "momentum_attribution": check_momentum_attribution(topics),
     }
     checks["llm_judge_quality"] = run_llm_judge(case_name)
     return checks

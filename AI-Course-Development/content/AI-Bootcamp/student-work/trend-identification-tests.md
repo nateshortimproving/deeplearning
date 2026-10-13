@@ -14,6 +14,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic includes a brief explanation of why it's trending.
 * Each topic has 3–5 hashtags in #format
 * Each topic cites at least one real, named source (publication, report, platform trend tool, or credible expert) supporting the claim that it is trending.
+* Every topic carries the subject's primary hashtag (the one tag shared across the list), and aside from that primary tag, every hashtag is unique to its topic.
 
 - **Fail if:** 
 * The trends are not specific to UX Design and AI.
@@ -23,6 +24,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic does not have 3–5 hashtags in #format
 * Any two topics are the same thing reworded
 * Any topic does not cite a real, named source supporting why it is trending
+* Any hashtag other than the subject's primary tag appears on more than 1 topic, or topics lack a shared primary hashtag
 
 ## Test 2
 - **Input:** "Identify trending topics in AI on social media. Subject: AI in Music"
@@ -53,6 +55,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic includes a brief explanation of why it's trending.
 * Each topic has 3–5 hashtags in #format
 * Each topic quantifies trend momentum with a specific, plausible signal (e.g., percentage growth in mentions, size of a growing community, or number of major publications covering it this month).
+* Each topic's Momentum: line attributes its signal to a named measurer (e.g., "per SocialBlade", "NRA survey found", "SBJ reported") — not a bare unsourced statistic.
 - **Fail if:** 
 * The trends are not specific to NFL and AI.
 * The trends are not provided in a numbered list of 5–8 topics.
@@ -61,6 +64,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic does not have 3–5 hashtags in #format
 * Any two topics are the same thing reworded
 * Any topic lacks a specific, plausible quantified signal of momentum
+* Any topic's Momentum: line asserts a number or signal without naming who measured it
 
 ## Test 4
 - **Input:** "Identify trending topics in AI on social media. Subject: AI in Food"
@@ -91,6 +95,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic includes a brief explanation of why it's trending.
 * Each topic has 3–5 hashtags in #format
 * Each topic includes a confidence level (High / Medium / Low) with a one-sentence justification tied to recency or strength of evidence.
+* Each topic's Source: line includes a specific date (at minimum month + year, e.g., "September 2026" or "Oct 12, 2026") falling within 2 months of today's date.
 - **Fail if:** 
 * The trends are not specific to Minecraft and AI.
 * The trends are not provided in a numbered list of 5–8 topics.
@@ -99,6 +104,7 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 * Each topic does not have 3–5 hashtags in #format
 * Any two topics are the same thing reworded
 * Any topic does not include a confidence level with a one-sentence justification
+* Any topic's Source: line lacks a date beyond a bare year, or the stated date is more than 2 months before today's date.
 
 ---
 
