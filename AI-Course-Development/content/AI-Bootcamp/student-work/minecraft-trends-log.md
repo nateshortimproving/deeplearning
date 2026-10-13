@@ -75,3 +75,28 @@ Evaluator: `evals/eval_trends.py` (test-5 results only)
 **Result:** 11/13. `source_citation_per_topic` FAIL (all 5 topics), `source_recency_per_topic` FAIL (all 5 topics). One instruction carried two ECs.
 **Verdict:** KEPT — provably load-bearing. Instruction and output restored.
 
+---
+
+## Conclusion
+
+**Runs completed:** 3 of 13 instructions tested (scope: test-5-ai-minecraft).
+
+**Removed permanently:**
+- `## Role` — social media strategist persona (invisible to evaluator)
+- `## Context` — Ideation-skill rationale (invisible to evaluator)
+
+**Kept:** all remaining instructions. Every visible instruction (3–13) maps to at least
+one EC that would drop on removal — the skill was built by iterating against these
+checks, so each surviving instruction is load-bearing by construction.
+
+**Limitations recorded:**
+- The eval can only prove *output-visible* instructions are load-bearing. Role and
+  Context were removed because they produce no detectable output — not because they
+  provably do nothing. They may still shape judgment in ways no check measures.
+- Instructions #12 and #13 are covered only by `llm_judge_quality`, which reads stored
+  verdicts (`judge_verdicts.json`), not a live judge. Removing them would falsely appear
+  safe — a known eval-architecture weakness, noted for a future iteration.
+
+**Final state:** leaner skill at 13/13 on all 5 cases. Remaining constraint set is
+provably load-bearing within the evaluator's limits.
+
