@@ -48,6 +48,10 @@
       "pass": true,
       "detail": "every momentum signal names a measurer"
     },
+    "audience_domain_specific": {
+      "pass": true,
+      "detail": "every audience names a subject-domain term"
+    },
     "llm_judge_quality": {
       "pass": true,
       "detail": "All 5 trends sit at the AI x UX Design intersection, are distinct (adaptive UI, ChatGPT intelligent UI, AI-native patterns, agentic interfaces, anti-polish aesthetic), and plausibly current."
@@ -101,6 +105,10 @@
     "momentum_attribution": {
       "pass": true,
       "detail": "every momentum signal names a measurer"
+    },
+    "audience_domain_specific": {
+      "pass": true,
+      "detail": "every audience names a subject-domain term"
     },
     "llm_judge_quality": {
       "pass": true,
@@ -156,6 +164,10 @@
       "pass": true,
       "detail": "every momentum signal names a measurer"
     },
+    "audience_domain_specific": {
+      "pass": true,
+      "detail": "every audience names a subject-domain term"
+    },
     "llm_judge_quality": {
       "pass": true,
       "detail": "Six distinct NFL x AI trends; schedule-release videos and broadcast graphics backlash are related but genuinely different stories. All recent."
@@ -210,6 +222,10 @@
       "pass": true,
       "detail": "every momentum signal names a measurer"
     },
+    "audience_domain_specific": {
+      "pass": true,
+      "detail": "every audience names a subject-domain term"
+    },
     "llm_judge_quality": {
       "pass": true,
       "detail": "All 5 trends are AI-in-food specific; topic 5 now centers on AI-powered personalized nutrition for Gen Z. Topics are distinct and plausibly current."
@@ -263,6 +279,10 @@
     "momentum_attribution": {
       "pass": true,
       "detail": "every momentum signal names a measurer"
+    },
+    "audience_domain_specific": {
+      "pass": true,
+      "detail": "every audience names a subject-domain term"
     },
     "llm_judge_quality": {
       "pass": true,

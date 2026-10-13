@@ -100,3 +100,29 @@ checks, so each surviving instruction is load-bearing by construction.
 **Final state:** leaner skill at 13/13 on all 5 cases. Remaining constraint set is
 provably load-bearing within the evaluator's limits.
 
+---
+
+# Lab: Context vs Constraints split — measured deltas
+
+## Step 1 — Label past changes
+
+| Change | Type | Why |
+|--------|------|-----|
+| Iteration 6 (dated sources) | Constraint (HOW) | prescribes output format |
+| Iteration 7 (unique secondary hashtags) | Constraint (HOW) | prescribes output format |
+| Iteration 8 (named measurer on momentum) | Constraint (HOW) | prescribes output format |
+| Removed `Role`/`Context` in refactor | Context (WHY) | framing/judgment, not format |
+
+## Step 2 — Context addition (measured)
+
+**Addition:** restored `## Role` and rewrote `## Context` to encode the verifiability
+rationale discovered during today's iterations ("every claim must be checkable —
+dated sources, attributed metrics, distinct angles").
+
+**Delta:** 0/13 checks moved. Baseline 13/13 → still 13/13.
+
+**Interpretation:** Context changes the model's reasoning, not the output's checkable
+shape. Deterministic checks are blind to it; only a live judge or human review could
+measure a Context delta. A zero delta is NOT evidence the Context does nothing —
+it's evidence the evaluator can't see WHY-layer changes.
+

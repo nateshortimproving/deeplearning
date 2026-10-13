@@ -17,7 +17,7 @@
    - Source: Anthropic research blog, "Minecraft as a Multi-Agent Testbed" (October 2026)
    - Hook: "Developers are turning Minecraft into a 3D multi-agent coding playground — here's why it matters."
    - Momentum: Anthropic's Minecraft multi-agent demo received 1.4M views and 4.2K GitHub forks in its first month, per GitHub tracking data.
-   - Audience: AI researchers and multi-agent systems developers
+   - Audience: AI researchers and multi-agent systems developers working in game environments
    - Confidence: High — named research organization with published demo metrics.
 
 3. **AI-Powered Passthrough Modding**

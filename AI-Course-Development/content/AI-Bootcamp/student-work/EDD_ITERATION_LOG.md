@@ -227,17 +227,37 @@ After tightening the five test cases so the existing skill output failed, the ev
 
 ---
 
+## Iteration 9 — Lab: Context/Constraints Split (audience domain specificity)
+
+**Step 1 — Labels:** Iterations 6–8 were all Constraints (HOW: output format). The refactor removed two Context/WHY sections (Role, Context). 
+
+**Step 2 — Context addition (measured):** Restored `## Role` and rewrote `## Context` around verifiability ("every claim must be checkable"). Delta: **0/13 checks moved** — deterministic checks are blind to WHY-layer text; only a live judge could measure it. A zero delta is evidence of the evaluator's boundary, not that Context does nothing.
+
+**Step 3 — Constraint addition (measured):**
+- *Constraint:* `Audience:` segment must be specific to the subject domain (e.g., "modded Minecraft players", not "gamers").
+- *Check added:* `audience_domain_specific` — subject-keyword heuristic per case.
+- *Baseline with check:* test-2 FAIL (topic 3: "Comedy and meme creators" — no music term), test-5 FAIL (topic 2: "AI researchers and multi-agent systems developers" — no Minecraft/game term). 3/5 passing.
+- *After skill constraint + output fixes:* 5/5 at 14/14.
+
+**Delta:** audience_domain_specific FAIL→PASS on 2 cases; +1 check suite-wide; no collateral movement.
+
+**Step 4 — Structural audit:** every instruction sits in its correct RTCC section — Role (persona), Task (deliverable), Context (rationale), Constraints (output requirements). The Context's verifiability clause borders on HOW but functions as motivation; retained there intentionally. No moves required.
+
+**Limitation noted:** `audience_domain_specific` uses a keyword heuristic — it verifies the audience *names* a domain term, not that the segment is genuinely appropriate. A live judge would catch subtler failures the keyword map can't.
+
+---
+
 ## Final State
 
 | Case | Final Score | Status |
 |------|-------------|--------|
-| test-1-ai-ux-design | 13/13 | PASS |
-| test-2-ai-music | 13/13 | PASS |
-| test-3-ai-nfl | 13/13 | PASS |
-| test-4-ai-food | 13/13 | PASS |
-| test-5-ai-minecraft | 13/13 | PASS |
+| test-1-ai-ux-design | 14/14 | PASS |
+| test-2-ai-music | 14/14 | PASS |
+| test-3-ai-nfl | 14/14 | PASS |
+| test-4-ai-food | 14/14 | PASS |
+| test-5-ai-minecraft | 14/14 | PASS |
 
-**Summary:** All 5 test cases fully pass against the updated `trend-identification` skill — 13 checks each (11 deterministic + LLM judge), up from 10 after three additional iteration cycles (source recency, hashtag diversity, momentum attribution).
+**Summary:** All 5 test cases fully pass against the updated `trend-identification` skill — 14 checks each (12 deterministic + LLM judge), after four additional iteration cycles plus a Context/Constraints split measurement (source recency, hashtag diversity, momentum attribution, audience domain specificity).
 
 The skill now produces `trends.md` entries with this structure per topic:
 

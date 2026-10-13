@@ -213,6 +213,40 @@ def _parse_source_date(line):
     return None
 
 
+# Subject-domain keywords: an Audience segment must name at least one to count
+# as subject-specific (heuristic proxy for "domain-specific").
+SUBJECT_KEYWORDS = {
+    "ux-design": ["ux", "design", "product", "saas", "interface", "figma"],
+    "music": ["music", "artist", "musician", "song", "spotify", "label", "producer", "audio"],
+    "nfl": ["nfl", "football", "sport", "team", "athlete", "broadcast"],
+    "food": ["food", "cook", "recipe", "restaurant", "cpg", "culinary", "nutrition", "menu", "ingredient"],
+    "minecraft": ["minecraft", "game", "gaming", "mod", "player", "build", "server"],
+}
+GENERIC_AUDIENCE_RE = re.compile(r"^\W*(gamers|fans|users|consumers|people|creators|enthusiasts)\W*$", re.I)
+
+
+def subject_key(case_name):
+    """'test-3-ai-nfl' -> 'nfl'; 'test-1-ai-ux-design' -> 'ux-design'."""
+    return re.sub(r"^test-\d+-ai-", "", case_name)
+
+
+def check_audience_specificity(topics, case_name):
+    keywords = SUBJECT_KEYWORDS.get(subject_key(case_name), [])
+    bad = []
+    for i, t in enumerate(topics, 1):
+        m = AUDIENCE_LINE_RE.search(t)
+        if not m:
+            bad.append(f"topic {i} has no audience line")
+            continue
+        seg = m.group(1).strip()
+        if GENERIC_AUDIENCE_RE.match(seg):
+            bad.append(f"topic {i} audience '{seg}' is generic")
+        elif keywords and not any(k in seg.lower() for k in keywords):
+            bad.append(f"topic {i} audience has no {subject_key(case_name)}-domain term")
+    return not bad, ("; ".join(bad) if bad
+                     else "every audience names a subject-domain term")
+
+
 # Provenance markers: someone/something named as the measurer of the signal.
 ATTRIBUTION_RE = re.compile(
     r"\bper\b|according to|reported|survey|study|index|data|found|"
@@ -325,6 +359,7 @@ def evaluate(case_name, path):
         "source_recency_per_topic": check_source_recency(topics),
         "hashtag_diversity": check_hashtag_diversity(topics),
         "momentum_attribution": check_momentum_attribution(topics),
+        "audience_domain_specific": check_audience_specificity(topics, case_name),
     }
     checks["llm_judge_quality"] = run_llm_judge(case_name)
     return checks

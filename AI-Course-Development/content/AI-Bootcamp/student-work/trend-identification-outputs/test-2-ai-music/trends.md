@@ -27,7 +27,7 @@
    - Source: Wired, "AI Song Memes Are Eating the Timeline" (October 2026)
    - Hook: "Your group chat is now a Billboard chart contender thanks to AI song memes."
    - Momentum: AI song meme posts on X averaged 25K retweets in September 2026, up from 6K in June, per X engagement metrics.
-   - Audience: Comedy and meme creators on X and TikTok
+   - Audience: Comedy and music-meme creators on X and TikTok
    - Confidence: High — Wired feature and sustained retweet growth give strong evidence.
 
 4. **Spotify vs. AI Music Debate**
