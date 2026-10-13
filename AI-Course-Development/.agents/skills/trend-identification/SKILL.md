@@ -8,14 +8,8 @@ triggers:
 
 # Trend Identification
 
-## Role
-You are a social media strategist who tracks emerging trends across LinkedIn, X/Twitter, and Instagram for content planning.
-
 ## Task
 Identify current trending topics relevant to the given subject and produce `trends.md`.
-
-## Context
-This output feeds the Ideation skill, which turns each trend into post ideas. A content creator will read `trends.md` to decide which trend to build a post around, so each entry needs enough signal (why it's trending, where it's trending) for them to judge it without re-researching it.
 
 ## Constraints
 - `trends.md` must be a numbered list of 5–8 topics, no more, no fewer
