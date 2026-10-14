@@ -1,0 +1,261 @@
+epic:
+  name: Pantry Inventory Management
+  description: Track food items in the pantry so users always know what they have, what is expiring soon, and what needs to be used before it goes bad.
+  source_prd: demo-prd-output.md
+
+stories:
+  - id: PANTRY-001
+    title: Add Pantry Item Manually
+    user_story: As a home cook, I want to manually add a food item to my pantry so that I can keep an accurate record of what I have on hand.
+    acceptance_criteria:
+      - id: PANTRY-001-AC1
+        given: I am on the pantry inventory page
+        when: I select the option to add a new item
+        then: a form opens with fields for item name, quantity, unit, category, and expiration date
+        type: positive
+      - id: PANTRY-001-AC2
+        given: I have filled in the add-item form with valid values
+        when: I confirm the entry
+        then: the item is saved and appears in the pantry list sorted by expiration date
+        type: positive
+      - id: PANTRY-001-AC3
+        given: I am on the add-item form
+        when: I try to confirm without entering a required field such as name, quantity, or expiration date
+        then: the form shows a validation message and the item is not saved
+        type: negative
+      - id: PANTRY-001-AC4
+        given: I add an item while the app has no network connection
+        when: connectivity is restored
+        then: the item syncs to the server and shows a success indicator
+        type: edge_case
+    review_status: pending
+    review_notes: ""
+
+  - id: PANTRY-002
+    title: Scan Barcode to Add Pantry Item
+    user_story: As a home cook, I want to scan a product barcode so that I can add items quickly without typing all the details.
+    acceptance_criteria:
+      - id: PANTRY-002-AC1
+        given: I am adding a new pantry item
+        when: I choose the barcode option
+        then: the device camera opens and begins scanning
+        type: positive
+      - id: PANTRY-002-AC2
+        given: the camera has recognized a barcode
+        when: the product is found
+        then: the add-item form opens with name and category pre-filled
+        type: positive
+      - id: PANTRY-002-AC3
+        given: I have denied camera permission
+        when: I attempt to scan a barcode
+        then: the scan option is disabled with an explanation, and manual entry remains fully available
+        type: negative
+      - id: PANTRY-002-AC4
+        given: the camera has recognized a barcode
+        when: the product cannot be found
+        then: manual entry opens with the barcode value pre-filled so I can complete the item details
+        type: edge_case
+      - id: PANTRY-002-AC5
+        given: the add-item form is open with pre-filled barcode details
+        when: I review and confirm the details
+        then: the item is saved to the pantry list
+        type: positive
+    review_status: pending
+    review_notes: ""
+
+  - id: PANTRY-003
+    title: Edit Pantry Item
+    user_story: As a home cook, I want to edit an existing pantry item so that I can correct mistakes or update quantities after using some of an item.
+    acceptance_criteria:
+      - id: PANTRY-003-AC1
+        given: I am viewing the pantry inventory
+        when: I choose to edit an item
+        then: a form opens pre-populated with the item's current name, quantity, category, and expiration date
+        type: positive
+      - id: PANTRY-003-AC2
+        given: I am on the edit form
+        when: I change the quantity and confirm
+        then: the inventory list updates to show the new quantity
+        type: positive
+      - id: PANTRY-003-AC3
+        given: I am on the edit form
+        when: I change the expiration date to a date in the past
+        then: the form warns me and does not save until I confirm or correct it
+        type: negative
+      - id: PANTRY-003-AC4
+        given: I am on the edit form
+        when: I change the quantity to zero and confirm
+        then: the item is marked as empty and shown with a depleted indicator
+        type: edge_case
+    review_status: pending
+    review_notes: ""
+
+  - id: PANTRY-004
+    title: Remove or Mark Pantry Item as Used
+    user_story: As a home cook, I want to remove or mark items as used so that my pantry reflects only what I actually have.
+    acceptance_criteria:
+      - id: PANTRY-004-AC1
+        given: I am viewing the pantry inventory
+        when: I mark an item as used
+        then: the item is removed from the active pantry list and the total item count decreases
+        type: positive
+      - id: PANTRY-004-AC2
+        given: I am viewing the pantry inventory
+        when: I choose to delete an item
+        then: a confirmation dialog appears asking me to confirm the removal
+        type: positive
+      - id: PANTRY-004-AC3
+        given: the delete confirmation dialog is open
+        when: I cancel the action
+        then: the item remains in the pantry unchanged
+        type: negative
+      - id: PANTRY-004-AC4
+        given: I have just removed an item
+        when: I choose undo within the allowed time
+        then: the item is restored to the pantry list
+        type: edge_case
+    review_status: pending
+    review_notes: ""
+
+  - id: PANTRY-005
+    title: View Expiration Status and Alerts
+    user_story: As a home cook, I want to see which items are expiring soon so that I can prioritize using them before they go bad.
+    acceptance_criteria:
+      - id: PANTRY-005-AC1
+        given: I have items in the pantry
+        when: I view the inventory list
+        then: each item displays a color-coded badge indicating expiration urgency
+        type: positive
+      - id: PANTRY-005-AC2
+        given: I have items expiring within three days
+        when: I open the app
+        then: a banner at the top shows how many items are expiring soon with a link to filter them
+        type: positive
+      - id: PANTRY-005-AC3
+        given: I have no items expiring within seven days
+        when: I view the inventory
+        then: no expiration alert banner is displayed
+        type: negative
+      - id: PANTRY-005-AC4
+        given: an item has already expired
+        when: I view the inventory list
+        then: the item is clearly marked as expired
+        type: edge_case
+    review_status: pending
+    review_notes: ""
+
+---
+
+epic:
+  name: Shopping List Generation
+  description: Generate and manage shopping lists from pantry data so users know exactly what to buy when items run low or run out.
+  source_prd: demo-prd-output.md
+
+stories:
+  - id: PANTRY-006
+    title: Auto-Generate Shopping List from Low Stock
+    user_story: As a home cook, I want the app to suggest shopping list items when pantry stock is low so that I do not forget to restock essentials.
+    acceptance_criteria:
+      - id: PANTRY-006-AC1
+        given: I have pantry items with quantity below their low-stock threshold
+        when: I open the shopping list
+        then: those items appear in a suggested section with the reason they were added
+        type: positive
+      - id: PANTRY-006-AC2
+        given: I have pantry items at zero quantity
+        when: I view the shopping list
+        then: those items appear in the suggested section with an out-of-stock badge
+        type: positive
+      - id: PANTRY-006-AC3
+        given: no pantry items are below their low-stock threshold
+        when: I open the shopping list
+        then: the suggested section shows a message that the pantry is well stocked
+        type: negative
+      - id: PANTRY-006-AC4
+        given: an item appears in the suggested section
+        when: I remove the suggestion
+        then: the item is hidden from the list and is not automatically re-suggested during the same view
+        type: edge_case
+    review_status: pending
+    review_notes: ""
+
+  - id: PANTRY-007
+    title: Manually Add Items to Shopping List
+    user_story: As a home cook, I want to manually add items to my shopping list so that I can include things I need that are not tracked in my pantry.
+    acceptance_criteria:
+      - id: PANTRY-007-AC1
+        given: I am on the shopping list page
+        when: I choose to add a manual item
+        then: a form opens with fields for item name, quantity, unit, and optional category
+        type: positive
+      - id: PANTRY-007-AC2
+        given: I have filled in the manual item form with valid data
+        when: I confirm the entry
+        then: the item appears in the manual section of the shopping list
+        type: positive
+      - id: PANTRY-007-AC3
+        given: I am on the manual item form
+        when: I try to confirm without entering a name
+        then: the form shows a validation message and the item is not saved
+        type: negative
+      - id: PANTRY-007-AC4
+        given: I add a manual item whose name matches an existing pantry item
+        when: the list renders
+        then: a hint appears suggesting I check my pantry before buying
+        type: edge_case
+    review_status: pending
+    review_notes: ""
+
+  - id: PANTRY-008
+    title: Check Off Purchased Items
+    user_story: As a home cook, I want to check off items as I purchase them so that I can track what remains to buy during a shopping trip.
+    acceptance_criteria:
+      - id: PANTRY-008-AC1
+        given: I have items on my shopping list
+        when: I mark an item as purchased
+        then: the item is shown with a strikethrough style and moved to a completed section
+        type: positive
+      - id: PANTRY-008-AC2
+        given: all items on my shopping list are marked as purchased
+        when: I view the list
+        then: a shopping-complete message appears with an option to add purchased items to the pantry
+        type: positive
+      - id: PANTRY-008-AC3
+        given: I have marked an item as purchased by mistake
+        when: I mark it as not purchased
+        then: the item returns to the unpurchased state without strikethrough
+        type: negative
+      - id: PANTRY-008-AC4
+        given: I have no items on my shopping list
+        when: I open the shopping list
+        then: an empty state message encourages me to add items
+        type: edge_case
+    review_status: pending
+    review_notes: ""
+
+  - id: PANTRY-009
+    title: Sync Purchased Items Back to Pantry
+    user_story: As a home cook, I want purchased shopping list items to update my pantry quantities so that my inventory stays accurate after a shopping trip without manual re-entry.
+    acceptance_criteria:
+      - id: PANTRY-009-AC1
+        given: a purchased item matches an existing pantry item by name
+        when: I choose to add purchased items to the pantry
+        then: the matching pantry item's quantity is increased by the purchased amount
+        type: positive
+      - id: PANTRY-009-AC2
+        given: a purchased item does not match any existing pantry item
+        when: I choose to add purchased items to the pantry
+        then: a new pantry item is created with the purchased quantity and a default category
+        type: positive
+      - id: PANTRY-009-AC3
+        given: I have already added purchased items from the current shopping trip to the pantry
+        when: I attempt to add them again
+        then: a warning asks me to confirm so I do not duplicate inventory
+        type: negative
+      - id: PANTRY-009-AC4
+        given: only some shopping list items are marked as purchased
+        when: I choose to add purchased items to the pantry
+        then: only the purchased items are added and the unpurchased items remain on the list
+        type: edge_case
+    review_status: pending
+    review_notes: ""
