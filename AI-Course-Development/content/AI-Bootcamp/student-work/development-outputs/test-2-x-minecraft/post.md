@@ -1,0 +1,1 @@
+Minecraft mods now have AI villagers that remember what you built together and actually hold conversations. Players are reporting servers where NPCs plan builds with you instead of just trading wheat. Have you tried one of these AI mods yet? #MinecraftMods #AI

@@ -1,0 +1,1 @@
+Your Minecraft village now talks back. AI NPC companions on modded servers remember your builds, chat in-character, and help plan your next project. Tried one yet? Reply and let me know how it went. #Minecraft

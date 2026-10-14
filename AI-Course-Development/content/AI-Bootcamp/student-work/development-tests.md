@@ -38,11 +38,11 @@ Written before the skill exists. These Expected Outputs are my Evaluation Criter
 
 | Test | Result (pass/fail) | Which criteria failed? |
 |------|--------------------|------------------------|
-| 1    |                    |                        |
-| 2    |                    |                        |
-| 3    |                    |                        |
-| 4    |                    |                        |
-| 5    |                    |                        |
+| 1    | FAIL               | hashtag_count (8, need 3–5); no CTA at end; judge: salesy/AI tone, no CTA |
+| 2    | FAIL               | length (353 chars, need ≤280); hashtag_count (6, need 1–2); no CTA; judge: hype tone, no CTA |
+| 3    | FAIL               | no visual suggestion for Instagram; judge: no platform CTA |
+| 4    | PASS               | — |
+| 5    | FAIL               | length (391 chars, need ≤280); hashtag_count (6, need 1–2); no CTA; judge: no CTA |
 
 ## Skill results (development.skill.md — after building)
 

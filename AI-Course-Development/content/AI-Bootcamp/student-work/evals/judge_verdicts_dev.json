@@ -1,0 +1,47 @@
+{
+  "test-1-linkedin-ux": {
+    "pass": true,
+    "tone": true,
+    "hook": true,
+    "self_contained": true,
+    "cta_fit": true,
+    "on_topic": true,
+    "notes": "Professional, specific opener; ends with a genuine discussion question; 3 relevant hashtags."
+  },
+  "test-2-x-minecraft": {
+    "pass": true,
+    "tone": true,
+    "hook": true,
+    "self_contained": true,
+    "cta_fit": true,
+    "on_topic": true,
+    "notes": "Conversational, community-native; direct 'have you tried' question; 2 hashtags."
+  },
+  "test-3-instagram-meal-planning": {
+    "pass": true,
+    "tone": true,
+    "hook": true,
+    "self_contained": true,
+    "cta_fit": true,
+    "on_topic": true,
+    "notes": "Warm IG-native voice, explicit visual suggestion, save/tag CTA, 6 relevant hashtags."
+  },
+  "test-4-linkedin-nfl": {
+    "pass": true,
+    "tone": true,
+    "hook": true,
+    "self_contained": true,
+    "cta_fit": true,
+    "on_topic": true,
+    "notes": "Professional, data-credible tone with a concrete hook and a genuine discussion-question CTA."
+  },
+  "test-5-x-minecraft-npcs": {
+    "pass": true,
+    "tone": true,
+    "hook": true,
+    "self_contained": true,
+    "cta_fit": true,
+    "on_topic": true,
+    "notes": "Community-native voice, punchy hook, 'Tried one yet?' CTA, 1 hashtag."
+  }
+}

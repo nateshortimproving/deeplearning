@@ -1,0 +1,112 @@
+{
+  "test-1-linkedin-ux": {
+    "length_in_range": {
+      "pass": true,
+      "detail": "144 words (need 100-300)"
+    },
+    "hashtag_count_in_range": {
+      "pass": true,
+      "detail": "3 hashtags (need 3-5)"
+    },
+    "cta_present": {
+      "pass": true,
+      "detail": "CTA marker found in closing lines"
+    },
+    "imagery_when_appropriate": {
+      "pass": true,
+      "detail": "imagery not required on this platform"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "Professional, specific opener; ends with a genuine discussion question; 3 relevant hashtags."
+    }
+  },
+  "test-2-x-minecraft": {
+    "length_in_range": {
+      "pass": true,
+      "detail": "260 chars (need 1-280)"
+    },
+    "hashtag_count_in_range": {
+      "pass": true,
+      "detail": "2 hashtags (need 1-2)"
+    },
+    "cta_present": {
+      "pass": true,
+      "detail": "CTA marker found in closing lines"
+    },
+    "imagery_when_appropriate": {
+      "pass": true,
+      "detail": "imagery not required on this platform"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "Conversational, community-native; direct 'have you tried' question; 2 hashtags."
+    }
+  },
+  "test-3-instagram-meal-planning": {
+    "length_in_range": {
+      "pass": true,
+      "detail": "87 words (need 50-125)"
+    },
+    "hashtag_count_in_range": {
+      "pass": true,
+      "detail": "6 hashtags (need 5-10)"
+    },
+    "cta_present": {
+      "pass": true,
+      "detail": "CTA marker found in closing lines"
+    },
+    "imagery_when_appropriate": {
+      "pass": true,
+      "detail": "visual cue present"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "Warm IG-native voice, explicit visual suggestion, save/tag CTA, 6 relevant hashtags."
+    }
+  },
+  "test-4-linkedin-nfl": {
+    "length_in_range": {
+      "pass": true,
+      "detail": "142 words (need 100-300)"
+    },
+    "hashtag_count_in_range": {
+      "pass": true,
+      "detail": "3 hashtags (need 3-5)"
+    },
+    "cta_present": {
+      "pass": true,
+      "detail": "CTA marker found in closing lines"
+    },
+    "imagery_when_appropriate": {
+      "pass": true,
+      "detail": "imagery not required on this platform"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "Professional, data-credible tone with a concrete hook and a genuine discussion-question CTA."
+    }
+  },
+  "test-5-x-minecraft-npcs": {
+    "length_in_range": {
+      "pass": true,
+      "detail": "209 chars (need 1-280)"
+    },
+    "hashtag_count_in_range": {
+      "pass": true,
+      "detail": "1 hashtags (need 1-2)"
+    },
+    "cta_present": {
+      "pass": true,
+      "detail": "CTA marker found in closing lines"
+    },
+    "imagery_when_appropriate": {
+      "pass": true,
+      "detail": "imagery not required on this platform"
+    },
+    "llm_judge_quality": {
+      "pass": true,
+      "detail": "Community-native voice, punchy hook, 'Tried one yet?' CTA, 1 hashtag."
+    }
+  }
+}
