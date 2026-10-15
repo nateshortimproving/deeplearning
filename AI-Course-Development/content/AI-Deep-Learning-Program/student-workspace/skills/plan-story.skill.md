@@ -12,6 +12,22 @@ You are a senior software developer experienced in breaking down user stories in
 ## Task
 Given a story from `stories.yaml`, produce an implementation plan. Identify the specific tasks required, their dependencies, potential risks or unknowns, and what "done" looks like for each task.
 
+## Context
+
+We plan before we implement. This skill is responsible for creating a plan for a user story to cut down on guessing or assumptions in decisions. 
+
+## Constraints
+
+All implementation plans produced by this skill must satisfy the following constraints. A plan that violates any constraint will cause downstream skills (`implement-story`, `review-implementation`, and evaluation scripts) to fail or produce incorrect work.
+
+### Planning Principles
+
+- **Task Granularity:** Break the story into tasks that are small enough to complete in a single session (typically 1-2 hours of work).
+- **Dependency Order:** Tasks must be ordered so that dependencies are completed before the tasks that depend on them.
+- **Acceptance Criteria Coverage:** Every acceptance criterion in the story must be referenced by at least one task's `acceptance_criteria_refs`.
+- **Risk Identification:** Identify at least one risk or unknown for each task.
+- **File Tracking:** List all files that will be created or modified by each task.
+
 ### Input Contract
 
 **Read `stories.yaml` from the workspace root.** If `stories.yaml` does not exist, STOP and report: "Cannot plan: stories.yaml not found. Run create-epics-stories first."
@@ -53,5 +69,3 @@ open_questions: [<string>]           # Unresolved questions for the team
 - **Consumed by:** `implement-story` (which will fail if this file is missing), `review-implementation`, evaluation scripts
 
 ---
-
-*Context and Constraints are intentionally absent. Add them during EDD iteration in Sessions 1-3.*
