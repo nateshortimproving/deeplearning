@@ -1,14 +1,25 @@
 story_id: PANTRY-005
-plan_version: 2.0.0
+plan_version: 2.1.0
 source_story:
   title: Filter and Search Inventory
   user_story: As a home cook, I want to search and filter my pantry so that I can
     quickly find specific items without scrolling through the entire list.
 tasks:
+- id: PANTRY-005-T0
+  description: Create the Prisma schema file defining the PantryItem model and run migrations
+    to create the pantry_item table in PostgreSQL.
+  dependencies: []
+  files_affected:
+  - api/prisma/schema.prisma
+  - api/prisma/migrations/001_init.sql
+  risks:
+  - Prisma must be installed and configured; DATABASE_URL environment variable must be set.
+  acceptance_criteria_refs: []
 - id: PANTRY-005-T1
   description: Implement a search query method in the Pantry Service that filters items
     by name (case-insensitive, partial match) and returns matching items.
-  dependencies: []
+  dependencies:
+  - PANTRY-005-T0
   files_affected:
   - api/src/types/pantry.ts
   - api/src/services/PantryService.ts
@@ -20,7 +31,8 @@ tasks:
 - id: PANTRY-005-T2
   description: Implement a category filter query method in the Pantry Service that
     returns all items in a specified category.
-  dependencies: []
+  dependencies:
+  - PANTRY-005-T0
   files_affected:
   - api/src/services/PantryService.ts
   - api/src/services/PantryService.test.ts
