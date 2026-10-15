@@ -46,3 +46,11 @@ Inputs: `plan.yaml` (must exist; the skill consumes the plan, not the raw story)
 | EC4 | Code follows declared architecture and tech stack correctly | (1) Backend code uses Fastify (if API tasks exist), Prisma (if database tasks exist), TypeScript. (2) Frontend code uses React functional components, hooks, TypeScript. (3) No paradigm mixing (no class components if plan specifies functional). (4) Code is NOT just imports — it actually USES the declared tech (e.g., Prisma queries are executed, not just imported). (5) No TypeScript `any` types (forces explicit typing). Verify: `npm run build` succeeds; `grep -r "any" src/` returns 0 matches; code review confirms tech is actually used. |
 | EC5 | Implementation documents assumptions and deviations accurately | `IMPLEMENTATION.md` exists and contains: (1) List of tasks implemented (matches plan exactly). (2) Assumptions made with justification (e.g., "assumed categories are predefined because..."). (3) Deviations from plan with justification, or explicit "None". (4) Test file locations and what each tests. (5) File is ≥ 200 words and complete (not a stub). (6) Assumptions are actually valid (reviewer checks). Verify: `find . -name "IMPLEMENTATION.md" | wc -l` ≥ 1; word count ≥ 200; code review confirms assumptions are correct. |
 | EC6 | Implementation stays in scope and has no dead code | (1) No source files exist outside `files_affected` + test files + `IMPLEMENTATION.md`. (2) No behavior for AC not in the plan. (3) No extra features or "nice-to-haves". (4) No dead code (unused functions, unused imports, commented-out code). (5) Every file in `files_affected` is actually used by at least one test. Verify: `git status` shows only expected files; `grep -r "// TODO\|// FIXME\|// XXX" src/` returns 0 matches; code review confirms no dead code. |
+
+
+# Evaluation Criteria: review-implementation
+
+EC 1: The implementation must match the plan (plan.yaml) with no gaps or failures. 
+EC 2: Every AC is confirmed to be completed. 
+EC 3: If issue found, it must be documented to explain why it matters and the suggested improvement.
+EC 4: Severity level must be assigned to each issue.
