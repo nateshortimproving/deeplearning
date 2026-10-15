@@ -21,7 +21,7 @@ export function usePantryFilter() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("/api/pantry/categories");
+        const response = await fetch("http://localhost:3001/api/pantry/categories");
         if (!response.ok) throw new Error("Failed to fetch categories");
         const data = await response.json();
         setCategories(data.categories);
@@ -44,7 +44,7 @@ export function usePantryFilter() {
         if (filters.search) params.append("search", filters.search);
         if (filters.category) params.append("category", filters.category);
 
-        const response = await fetch(`/api/pantry/search?${params.toString()}`);
+        const response = await fetch(`http://localhost:3001/api/pantry/search?${params.toString()}`);
         if (!response.ok) throw new Error("Failed to fetch items");
 
         const data = await response.json();
