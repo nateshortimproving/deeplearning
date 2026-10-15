@@ -1,0 +1,70 @@
+story_id: PANTRY-001
+plan_version: "1.0"
+
+source_story:
+  title: Add Pantry Item Manually
+  user_story: As a home cook, I want to manually add a food item to my pantry so that I can keep an accurate record of what I have on hand.
+
+tasks:
+  - id: TASK-001
+    description: Create PantryItem data model with required fields (name, category, quantity, expirationDate)
+    dependencies: []
+    files_affected:
+      - src/models/PantryItem.ts
+    risks:
+      - Database schema migration may fail if table already exists
+      - Field validation rules not yet defined
+    acceptance_criteria_refs:
+      - PANTRY-001-AC1
+      - PANTRY-001-AC4
+
+  - id: TASK-002
+    description: Build AddItemForm component with input validation
+    dependencies:
+      - TASK-001
+    files_affected:
+      - src/components/AddItemForm.tsx
+      - src/components/AddItemForm.test.tsx
+    risks:
+      - Form state management complexity
+      - Validation error messages may not be clear to users
+    acceptance_criteria_refs:
+      - PANTRY-001-AC1
+      - PANTRY-001-AC3
+
+  - id: TASK-003
+    description: Implement API endpoint POST /pantry/items with duplicate detection
+    dependencies:
+      - TASK-001
+    files_affected:
+      - src/api/routes/pantryRoutes.ts
+      - src/api/routes/pantryRoutes.test.ts
+    risks:
+      - Race condition if two requests arrive simultaneously
+      - Duplicate detection logic may not handle case-insensitive names
+    acceptance_criteria_refs:
+      - PANTRY-001-AC1
+      - PANTRY-001-AC4
+
+  - id: TASK-004
+    description: Update inventory list to display new items grouped by category
+    dependencies:
+      - TASK-002
+      - TASK-003
+    files_affected:
+      - src/components/InventoryList.tsx
+      - src/components/InventoryList.test.tsx
+    risks:
+      - Category grouping logic may break with special characters
+      - Item count calculation may be off-by-one
+    acceptance_criteria_refs:
+      - PANTRY-001-AC2
+
+assumptions:
+  - Categories are predefined and cannot be created dynamically
+  - Expiration date is optional for initial implementation
+  - Duplicate detection is case-insensitive
+
+open_questions:
+  - Should duplicate detection apply across all users or per-user pantry?
+  - What is the maximum length for item names?

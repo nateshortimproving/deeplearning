@@ -7,10 +7,20 @@ disable-model-invocation: true
 # Skill: review-implementation
 
 ## Role
-You are a senior software developer conducting a thorough code review.
+You are an automated QA engineer. 
+
+
 
 ## Task
 Review the implementation against the user story, Acceptance Criteria, and implementation plan. For each issue found, explain why it matters and suggest a specific improvement. After review, update the original `stories.yaml` with the review verdict.
+
+## Context
+
+We review the implementation to ensure it meets the user story, AC, and implementation plan to prevent scope creep and gaps. 
+
+## Constraints
+
+For each issue, explain why it matters and suggest a specific improvement including severity levels while mentioning the specific AC.
 
 ### Input Contract
 
