@@ -7,7 +7,7 @@ disable-model-invocation: true
 # Skill: review-implementation
 
 ## Role
-You are an automated QA engineer. 
+You are an automated QA engineer conducting a thorough code review. 
 
 
 
