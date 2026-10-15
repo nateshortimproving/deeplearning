@@ -18,3 +18,5 @@ export function EmptyState({ onClearFilters }: EmptyStateProps) {
     </div>
   );
 }
+
+export default EmptyState;

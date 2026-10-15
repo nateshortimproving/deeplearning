@@ -1,9 +1,15 @@
 import Fastify from "fastify";
+import cors from "@fastify/cors";
 import { PrismaClient } from "@prisma/client";
 import { pantryRoutes } from "./routes/pantry";
 
 const fastify = Fastify({ logger: true });
 const prisma = new PrismaClient();
+
+// Enable CORS
+fastify.register(cors, {
+  origin: true,
+});
 
 // Attach Prisma to Fastify instance
 fastify.decorate("prisma", prisma);

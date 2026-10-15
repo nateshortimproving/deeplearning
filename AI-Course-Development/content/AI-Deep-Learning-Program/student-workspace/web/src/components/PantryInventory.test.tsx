@@ -4,6 +4,17 @@ import { PantryInventory } from "./PantryInventory";
 
 global.fetch = vi.fn();
 
+const milk = { id: "1", name: "Milk", quantity: 1, unit: "gallon", category: "Dairy", expirationDate: "2026-10-20" };
+const apples = { id: "2", name: "Apples", quantity: 4, unit: "count", category: "Produce", expirationDate: "2026-10-18" };
+
+const mockApi = (search: (url: string) => unknown[], categories: string[] = []) => {
+  vi.mocked(global.fetch).mockImplementation((async (url: string) => ({
+    ok: true,
+    json: async () =>
+      url.includes("/categories") ? { categories } : { items: search(url), count: search(url).length },
+  })) as unknown as typeof fetch);
+};
+
 describe("PantryInventory", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -22,74 +33,37 @@ describe("PantryInventory", () => {
   });
 
   it("calls /api/pantry/search when search text changes", async () => {
-    vi.mocked(global.fetch)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ categories: [] }),
-      } as Response)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          items: [
-            { id: "1", name: "Milk", quantity: 1, unit: "gallon", category: "Dairy", expirationDate: "2026-10-20" },
-          ],
-          count: 1,
-        }),
-      } as Response);
+    mockApi((url) => (url.includes("search=Milk") ? [milk] : [milk, apples]));
 
     render(<PantryInventory />);
-
-    const searchInput = screen.getByLabelText("Search");
-    fireEvent.change(searchInput, { target: { value: "Milk" } });
+    fireEvent.change(screen.getByLabelText("Search"), { target: { value: "Milk" } });
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining("/api/pantry/search"));
-      expect(screen.getByText("Milk")).toBeInTheDocument();
+      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining("search=Milk"));
+      expect(screen.queryByText(/Apples/)).not.toBeInTheDocument();
+      expect(screen.getByText(/Milk/)).toBeInTheDocument();
     });
   });
 
   it("calls /api/pantry/search when category filter changes", async () => {
-    vi.mocked(global.fetch)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ categories: ["Dairy", "Produce"] }),
-      } as Response)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          items: [
-            { id: "1", name: "Apples", quantity: 4, unit: "count", category: "Produce", expirationDate: "2026-10-18" },
-          ],
-          count: 1,
-        }),
-      } as Response);
+    mockApi((url) => (url.includes("category=Produce") ? [apples] : [milk, apples]), ["Dairy", "Produce"]);
 
     render(<PantryInventory />);
-
-    const categorySelect = screen.getByLabelText("Category");
-    fireEvent.change(categorySelect, { target: { value: "Produce" } });
+    await waitFor(() => expect(screen.getByRole("option", { name: "Produce" })).toBeInTheDocument());
+    fireEvent.change(screen.getByLabelText("Category"), { target: { value: "Produce" } });
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining("category=Produce"));
-      expect(screen.getByText("Apples")).toBeInTheDocument();
+      expect(screen.queryByText(/Milk/)).not.toBeInTheDocument();
+      expect(screen.getByText(/Apples/)).toBeInTheDocument();
     });
   });
 
   it("renders empty state when filters match no items", async () => {
-    vi.mocked(global.fetch)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ categories: [] }),
-      } as Response)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ items: [], count: 0 }),
-      } as Response);
+    mockApi((url) => (url.includes("search=NonExistent") ? [] : [milk]));
 
     render(<PantryInventory />);
-
-    const searchInput = screen.getByLabelText("Search");
-    fireEvent.change(searchInput, { target: { value: "NonExistent" } });
+    fireEvent.change(screen.getByLabelText("Search"), { target: { value: "NonExistent" } });
 
     await waitFor(() => {
       expect(screen.getByTestId("empty-state")).toBeInTheDocument();
@@ -98,39 +72,17 @@ describe("PantryInventory", () => {
   });
 
   it("clears filters when clear button is clicked", async () => {
-    vi.mocked(global.fetch)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ categories: [] }),
-      } as Response)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ items: [], count: 0 }),
-      } as Response)
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          items: [
-            { id: "1", name: "Milk", quantity: 1, unit: "gallon", category: "Dairy", expirationDate: "2026-10-20" },
-          ],
-          count: 1,
-        }),
-      } as Response);
+    mockApi((url) => (url.includes("search=NonExistent") ? [] : [milk]));
 
     render(<PantryInventory />);
+    fireEvent.change(screen.getByLabelText("Search"), { target: { value: "NonExistent" } });
+    await waitFor(() => expect(screen.getByTestId("empty-state")).toBeInTheDocument());
 
-    const searchInput = screen.getByLabelText("Search");
-    fireEvent.change(searchInput, { target: { value: "NonExistent" } });
-
-    await waitFor(() => {
-      expect(screen.getByTestId("empty-state")).toBeInTheDocument();
-    });
-
-    const clearButton = screen.getByText("Clear filters");
-    fireEvent.click(clearButton);
+    fireEvent.click(screen.getByText("Clear filters"));
 
     await waitFor(() => {
       expect(screen.queryByTestId("empty-state")).not.toBeInTheDocument();
+      expect(screen.getByText(/Milk/)).toBeInTheDocument();
     });
   });
 });

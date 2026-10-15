@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { usePantryFilter } from "../hooks/usePantryFilter";
-import { EmptyState } from "./EmptyState";
+import SearchInput from "./SearchInput";
+import CategorySelect from "./CategorySelect";
+import EmptyState from "./EmptyState";
 
 /**
  * Pantry Inventory component with search and category filter.
@@ -10,36 +12,27 @@ export function PantryInventory() {
   const { filters, setFilters, clearFilters, items, categories, loading, error, hasActiveFilters } =
     usePantryFilter();
 
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters((prev) => ({ ...prev, search: e.target.value }));
+  }, [setFilters]);
+
+  const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilters((prev) => ({ ...prev, category: e.target.value }));
+  }, [setFilters]);
+
   return (
     <div>
       <h1>Pantry Inventory</h1>
 
       {error && <div role="alert">{error}</div>}
 
-      <label htmlFor="pantry-search">Search</label>
-      <input
-        id="pantry-search"
-        type="text"
-        value={filters.search}
-        onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-        placeholder="Search items..."
-        disabled={loading}
-      />
+      <SearchInput value={filters.search} onChange={handleSearchChange} />
 
-      <label htmlFor="pantry-category">Category</label>
-      <select
-        id="pantry-category"
+      <CategorySelect
         value={filters.category}
-        onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-        disabled={loading}
-      >
-        <option value="">All categories</option>
-        {categories.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
+        onChange={handleCategoryChange}
+        categories={categories}
+      />
 
       {loading && <p>Loading...</p>}
 
@@ -57,3 +50,5 @@ export function PantryInventory() {
     </div>
   );
 }
+
+export default PantryInventory;
