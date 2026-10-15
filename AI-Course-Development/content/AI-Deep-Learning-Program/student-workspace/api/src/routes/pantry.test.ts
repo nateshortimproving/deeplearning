@@ -29,19 +29,6 @@ describe("Pantry Routes", () => {
 
   describe("GET /search", () => {
     it("returns items matching search and category filters", async () => {
-      const mockItems = [
-        { id: "1", name: "Milk", quantity: 1, unit: "gallon", category: "Dairy", expirationDate: "2026-10-20" },
-      ];
-
-      const request = {
-        query: { search: "ilk", category: "Dairy" },
-      };
-      const reply = {
-        send: vi.fn().mockReturnValue(reply),
-      };
-
-      // In a real test, we'd call the handler directly
-      // For now, verify the route is registered
       await pantryRoutes(mockFastify);
 
       expect(mockFastify.get).toHaveBeenCalledWith(
@@ -52,13 +39,6 @@ describe("Pantry Routes", () => {
     });
 
     it("returns empty array when filters match no items", async () => {
-      const request = {
-        query: { search: "NonExistent", category: "Produce" },
-      };
-      const reply = {
-        send: vi.fn().mockReturnValue(reply),
-      };
-
       await pantryRoutes(mockFastify);
 
       expect(mockFastify.get).toHaveBeenCalled();
