@@ -1,56 +1,82 @@
 story_id: PANTRY-005
-plan_version: 1.0.0
+plan_version: 2.0.0
 source_story:
   title: Filter and Search Inventory
   user_story: As a home cook, I want to search and filter my pantry so that I can
     quickly find specific items without scrolling through the entire list.
 tasks:
 - id: PANTRY-005-T1
-  description: Add a search input to the pantry inventory view and implement text-based
-    filtering so only items matching the search text are shown.
+  description: Implement a search query method in the Pantry Service that filters items
+    by name (case-insensitive, partial match) and returns matching items.
   dependencies: []
   files_affected:
-  - src/components/PantryInventory.tsx
-  - src/hooks/usePantryFilter.ts
-  - src/types/pantry.ts
+  - api/src/types/pantry.ts
+  - api/src/services/PantryService.ts
+  - api/src/services/PantryService.test.ts
   risks:
-  - Deciding whether search should match item names only or also categories/tags may
-    affect scope.
+  - Database query performance with large pantry lists; may need indexing on item name.
   acceptance_criteria_refs:
   - PANTRY-005-AC1
 - id: PANTRY-005-T2
-  description: Add a category filter control to the pantry inventory view and implement
-    category-based filtering so only items in the selected category are shown.
+  description: Implement a category filter query method in the Pantry Service that
+    returns all items in a specified category.
   dependencies: []
   files_affected:
-  - src/components/PantryInventory.tsx
-  - src/hooks/usePantryFilter.ts
-  - src/types/pantry.ts
+  - api/src/services/PantryService.ts
+  - api/src/services/PantryService.test.ts
   risks:
-  - Category list may be hard-coded or fetched dynamically; confirm data source before
-    implementing.
+  - Category values must be validated against existing categories in the database.
   acceptance_criteria_refs:
   - PANTRY-005-AC2
 - id: PANTRY-005-T3
-  description: Render an empty state when the active search text and category filter
-    match no items, including a control to clear the filters.
+  description: Add a REST API endpoint GET /api/pantry/search that accepts query parameters
+    for search text and category, delegates to the Pantry Service, and returns filtered
+    results or an empty array.
   dependencies:
   - PANTRY-005-T1
   - PANTRY-005-T2
   files_affected:
-  - src/components/PantryInventory.tsx
-  - src/components/EmptyState.tsx
-  - src/hooks/usePantryFilter.ts
+  - api/src/routes/pantry.ts
+  - api/src/routes/pantry.test.ts
   risks:
-  - Edge case behavior when only one of the two filters is active must be handled
-    consistently.
+  - Query parameter validation and sanitization required to prevent injection attacks.
+  acceptance_criteria_refs:
+  - PANTRY-005-AC1
+  - PANTRY-005-AC2
+  - PANTRY-005-AC3
+- id: PANTRY-005-T4
+  description: Update the web client PantryInventory component to call the /api/pantry/search
+    endpoint instead of filtering client-side, and render the empty state when the
+    API returns no results.
+  dependencies:
+  - PANTRY-005-T3
+  files_affected:
+  - web/src/components/PantryInventory.tsx
+  - web/src/hooks/usePantryFilter.ts
+  - web/src/types/pantry.ts
+  risks:
+  - Network latency may require debouncing search input to avoid excessive API calls.
+  acceptance_criteria_refs:
+  - PANTRY-005-AC1
+  - PANTRY-005-AC2
+  - PANTRY-005-AC3
+- id: PANTRY-005-T5
+  description: Add an EmptyState component to the web client that renders when the
+    API returns no results, with a control to clear filters.
+  dependencies:
+  - PANTRY-005-T4
+  files_affected:
+  - web/src/components/EmptyState.tsx
+  risks:
+  - Empty state must be visually distinct and provide clear guidance to the user.
   acceptance_criteria_refs:
   - PANTRY-005-AC3
 assumptions:
-- The pantry inventory list component already exists and renders a list of items with
-  name and category fields.
-- Filtering is performed client-side for this story; server-side search is out of
-  scope.
+- The Pantry Service has access to a Prisma Client configured for PostgreSQL.
+- The API uses Fastify with TypeBox for request/response validation.
+- The web client uses React hooks and can make HTTP requests via fetch or axios.
+- Item names and categories are stored as strings in the database.
 open_questions:
-- Should the search be case-insensitive and support partial matches?
-- Should the category filter be rendered as a dropdown, a row of chips, or both?
+- Should search be debounced on the client side, or should the API handle rate limiting?
+- Should the API return pagination metadata for large result sets?
+- Should the empty state offer a "browse all categories" suggestion?

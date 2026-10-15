@@ -30,8 +30,8 @@ Use only the plan's `tasks`, `dependencies`, and `acceptance_criteria_refs` as y
 
 - **One task, one code change:** Every task in `plan.yaml` must produce a corresponding, traceable code change in at least one file listed in its `files_affected`. → Maps to EC1.
 - **AC coverage:** Every `acceptance_criteria_refs` entry in the plan must be satisfied by the code. Write code so that a reviewer can map each AC directly to the files and functions that implement it. → Maps to EC2.
-- **Language and framework:** Generate TypeScript and React code for the PantryPal web client, following the architecture in `sample-docs/ARCHITECTURE.md`. Use functional components, hooks for state, and props for data flow. → Maps to EC4.
-- **Testing:** Create or update at least one test file for the implemented behavior. Tests must exercise every AC referenced in the plan, including positive, negative, and edge-case paths. → Maps to EC3.
+- **Architectural alignment:** Code must follow the architecture in `sample-docs/ARCHITECTURE.md`. If the plan includes backend tasks (API, database, services), implement them using the declared tech stack: Fastify for the API, Prisma for database access, TypeScript throughout. If the plan includes frontend tasks, use React functional components, hooks, and TypeScript. → Maps to EC4.
+- **Testing:** Create or update at least one test file for the implemented behavior. Tests must exercise every AC referenced in the plan, including positive, negative, and edge-case paths. Backend tests should use a test database or mocks; frontend tests should use React Testing Library. → Maps to EC3.
 - **Dependency order:** Implement tasks in the order implied by their `dependencies`. Do not start a task until all of its dependencies are implemented and tested. → Maps to EC1 and EC2.
 - **No scope creep:** Do not implement behavior for AC that are not referenced in the plan, even if they appear in the original story. → Maps to EC6.
 
