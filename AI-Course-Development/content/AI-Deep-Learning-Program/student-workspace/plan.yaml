@@ -1,0 +1,56 @@
+story_id: PANTRY-005
+plan_version: 1.0.0
+source_story:
+  title: Filter and Search Inventory
+  user_story: As a home cook, I want to search and filter my pantry so that I can
+    quickly find specific items without scrolling through the entire list.
+tasks:
+- id: PANTRY-005-T1
+  description: Add a search input to the pantry inventory view and implement text-based
+    filtering so only items matching the search text are shown.
+  dependencies: []
+  files_affected:
+  - src/components/PantryInventory.tsx
+  - src/hooks/usePantryFilter.ts
+  - src/types/pantry.ts
+  risks:
+  - Deciding whether search should match item names only or also categories/tags may
+    affect scope.
+  acceptance_criteria_refs:
+  - PANTRY-005-AC1
+- id: PANTRY-005-T2
+  description: Add a category filter control to the pantry inventory view and implement
+    category-based filtering so only items in the selected category are shown.
+  dependencies: []
+  files_affected:
+  - src/components/PantryInventory.tsx
+  - src/hooks/usePantryFilter.ts
+  - src/types/pantry.ts
+  risks:
+  - Category list may be hard-coded or fetched dynamically; confirm data source before
+    implementing.
+  acceptance_criteria_refs:
+  - PANTRY-005-AC2
+- id: PANTRY-005-T3
+  description: Render an empty state when the active search text and category filter
+    match no items, including a control to clear the filters.
+  dependencies:
+  - PANTRY-005-T1
+  - PANTRY-005-T2
+  files_affected:
+  - src/components/PantryInventory.tsx
+  - src/components/EmptyState.tsx
+  - src/hooks/usePantryFilter.ts
+  risks:
+  - Edge case behavior when only one of the two filters is active must be handled
+    consistently.
+  acceptance_criteria_refs:
+  - PANTRY-005-AC3
+assumptions:
+- The pantry inventory list component already exists and renders a list of items with
+  name and category fields.
+- Filtering is performed client-side for this story; server-side search is out of
+  scope.
+open_questions:
+- Should the search be case-insensitive and support partial matches?
+- Should the category filter be rendered as a dropdown, a row of chips, or both?
