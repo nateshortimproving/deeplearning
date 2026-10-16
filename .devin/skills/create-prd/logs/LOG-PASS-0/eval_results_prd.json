@@ -1,0 +1,20 @@
+{
+  "SKILL": {
+    "required_sections_present": {
+      "pass": false,
+      "detail": "missing: Target Audience / Personas; Functional Requirements; User Stories / Use Cases; Assumptions, Constraints, Dependencies"
+    },
+    "sections_non_empty": {
+      "pass": false,
+      "detail": "no sentence in: Target Audience / Personas (missing); Functional Requirements (missing); User Stories / Use Cases (missing); Assumptions, Constraints, Dependencies (missing); Out of Scope"
+    },
+    "out_of_scope_min_items": {
+      "pass": false,
+      "detail": "1 out-of-scope items (need >= 2)"
+    },
+    "llm_judge_specificity": {
+      "pass": false,
+      "detail": "Content is a placeholder template with no concrete PRD content; required sections are absent and functional requirements carry no priority breakdown."
+    }
+  }
+}
