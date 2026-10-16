@@ -1,22 +1,151 @@
-review_id: REV-PANTRY-005-001
-story_id: PANTRY-005
-reviewed_at: "2026-10-15T00:00:00Z"
+review_id: REV-PANTRY-005-002          # <<< CHANGED: was REV-PANTRY-005-001
+story_id: PANTRY-005                   # unchanged
+reviewed_at: "2026-10-15T00:00:00Z"    # unchanged
 
-verdict: passed
+verdict: changes_requested             # <<< CHANGED: was "passed"
 
-issues: []
+# ============================================================================
+# <<< CHANGED: issues was [] (empty). ALL 7 issues below are NEW.
+# ============================================================================
+issues:
+  - severity: major                    # <<< NEW ISSUE 1 of 7
+    category: correctness
+    description: >-
+      The API does not typecheck. `npx tsc` reports `Property 'prisma' does not
+      exist on type 'FastifyInstance'` in api/src/routes/pantry.ts (line 7) and
+      three `expirationDate: Date is not assignable to type 'string'` errors in
+      api/src/services/PantryService.ts (lines 17, 37, 79). There is also no
+      tsconfig.json in api/, so `npm run build` (`tsc`) never surfaces these
+      errors — tsx and vitest strip types without checking, which is why the
+      suite passes despite the defects. The route also returns Prisma rows
+      (with createdAt/updatedAt and Date expirationDate) while the declared
+      Reply type claims string dates.
+    recommendation: >-
+      Add a tsconfig.json to api/ so `npm run build` actually compiles the
+      source. Add Fastify module augmentation
+      (`declare module "fastify" { interface FastifyInstance { prisma: PrismaClient } }`).
+      Either map Prisma results to the API `PantryItem` type (serializing
+      expirationDate via `.toISOString()`) or change the interface's
+      expirationDate to `Date` and let Fastify's response schema serialize it.
+    ac_ref: general
+
+  - severity: major                    # <<< NEW ISSUE 2 of 7
+    category: correctness
+    description: >-
+      `PantryService.searchAndFilter("", "")` returns an empty array when both
+      filters are empty, and `usePantryFilter` fetches `/api/pantry/search`
+      with no params on mount. As a result the real initial pantry view always
+      renders zero items until the user types a filter — the "I am viewing my
+      pantry" precondition of AC1 is never met in production. The component
+      tests mask this because the fetch mock returns items for unfiltered
+      requests, so the defect is invisible to the suite.
+    recommendation: >-
+      When both filters are empty, return all pantry items (unfiltered list)
+      instead of `[]`, or have the client call a dedicated list endpoint on
+      mount. Add a test that exercises the real searchAndFilter empty-input
+      path through the route so the behavior is pinned down.
+    ac_ref: PANTRY-005-AC1
+
+  - severity: major                    # <<< NEW ISSUE 3 of 7
+    category: test_coverage
+    description: >-
+      api/src/routes/pantry.test.ts never invokes the registered handlers or
+      asserts on responses — it only verifies that `fastify.get` was called.
+      `mockPantryService` is declared but never injected (the real
+      PantryService is constructed inside pantryRoutes). Test names claim
+      behaviors ("returns empty array when filters match no items") that are
+      not actually tested, so the route layer has effectively no behavioral
+      coverage — the exact gap that let the empty-filter defect ship.
+    recommendation: >-
+      Use `fastify.inject()` against a real Fastify instance with a stubbed
+      prisma decorator, or refactor pantryRoutes to accept the service for
+      dependency injection. Assert on status codes and response bodies for
+      search-only, category-only, combined, no-match, and empty-filter cases.
+    ac_ref: PANTRY-005-AC3
+
+  - severity: minor                    # <<< NEW ISSUE 4 of 7
+    category: edge_case
+    description: >-
+      The fetch effect in usePantryFilter has no stale-response guard. If the
+      user changes filters quickly and responses arrive out of order, an older
+      response can overwrite newer results. The 300ms debounce reduces but
+      does not eliminate this (slow first request + fast second request).
+    recommendation: >-
+      Track a request id/ref or use AbortController in the effect cleanup so
+      only the latest response calls setItems.
+    ac_ref: PANTRY-005-AC1
+
+  - severity: minor                    # <<< NEW ISSUE 5 of 7
+    category: correctness
+    description: >-
+      usePantryFilter.ts uses `NodeJS.Timeout` (line 20) but web/package.json
+      has no @types/node dependency, so this fails typecheck in a browser
+      project (`Cannot find namespace 'NodeJS'`). web/ also has no
+      tsconfig.json, so `npm run build` (`tsc && vite build`) cannot run.
+    recommendation: >-
+      Use `ReturnType<typeof setTimeout>` for the timer ref and add a
+      tsconfig.json (with vite/client types) so the web build script works.
+    ac_ref: general
+
+  - severity: nit                      # <<< NEW ISSUE 6 of 7
+    category: readability
+    description: >-
+      The API base URL is hardcoded as `http://localhost:3001` in two places in
+      usePantryFilter.ts, which breaks in any non-local environment.
+    recommendation: >-
+      Move the base URL to `import.meta.env.VITE_API_URL` (with a localhost
+      fallback) or a shared api client module.
+    ac_ref: general
+
+  - severity: nit                      # <<< NEW ISSUE 7 of 7
+    category: readability
+    description: >-
+      plan.yaml lists `api/prisma/migrations/001_init.sql` in files_affected,
+      but the implementation created `api/prisma/migrations/001_init/migration.sql`
+      (Prisma's standard layout). Functionally fine, but the plan artifact no
+      longer matches the repo, which makes files_affected-based reviews
+      report a missing file.
+    recommendation: >-
+      Update plan.yaml's files_affected to the actual migration path, or note
+      the convention deviation in the plan.
+    ac_ref: general
+# ============================================================================
+# <<< END of new issues block
+# ============================================================================
 
 ac_assessment:
   - ac_id: PANTRY-005-AC1
-    status: satisfied
-    notes: PantryService.searchByName() implements case-insensitive partial match. API endpoint GET /api/pantry/search accepts search parameter. Frontend PantryInventory component calls API and renders matching items. Tests verify search returns only matching items and handles empty search.
-
+    status: partially_satisfied        # <<< CHANGED: was "satisfied"
+    notes: >-                          # <<< CHANGED: notes rewritten
+      Typing in the search field does return only matching items via
+      searchByName/searchAndFilter (case-insensitive partial match) and the
+      component/hook tests confirm the UI updates. However, the "viewing my
+      pantry" precondition is not met in production: searchAndFilter returns []
+      for empty filters and the hook fetches with empty filters on mount, so
+      the initial inventory always renders nothing. Tests mask this by mocking
+      the API to return items for unfiltered requests.
   - ac_id: PANTRY-005-AC2
-    status: satisfied
-    notes: PantryService.filterByCategory() filters items by category (case-insensitive). API endpoint GET /api/pantry/search accepts category parameter. Frontend CategorySelect component calls API with category filter. Tests verify only items in selected category are returned.
-
+    status: satisfied                  # status unchanged
+    notes: >-                          # <<< CHANGED: notes rewritten
+      Selecting a category calls /api/pantry/search?category=..., and
+      filterByCategory/searchAndFilter apply a case-insensitive exact match on
+      category. Service, hook, and component tests verify only items in the
+      selected category are shown.
   - ac_id: PANTRY-005-AC3
-    status: satisfied
-    notes: PantryService.searchAndFilter() returns empty array when filters match no items. Frontend PantryInventory component renders EmptyState component when items.length === 0 && hasActiveFilters. EmptyState provides "Clear filters" button to reset filters. Tests verify empty state is shown and filters can be cleared.
+    status: satisfied                  # status unchanged
+    notes: >-                          # <<< CHANGED: notes rewritten
+      When filters match nothing, PantryInventory renders EmptyState (gated on
+      items.length === 0 && hasActiveFilters && !loading) with a "Clear
+      filters" button wired to clearFilters, and tests verify both the empty
+      state and the clearing behavior. Route-level coverage for this path is
+      claimed but not actually exercised (see test_coverage issue).
 
-summary: Implementation fully satisfies all 3 AC for PANTRY-005. Search and filter functionality is implemented in backend service, API routes, and frontend components. All AC have passing tests covering positive cases, edge cases (empty filters), and error scenarios. Code follows declared tech stack (Fastify, Prisma, React hooks, TypeScript).
+summary: >-                            # <<< CHANGED: summary rewritten
+  The feature is functionally complete against the plan and all 22 tests pass,
+  but three issues block a clean pass: the API does not typecheck
+  (fastify.prisma augmentation missing, Date-vs-string mismatches, no
+  tsconfig), the backend returns an empty array for empty filters so the real
+  initial pantry view is always empty (masked by test mocks), and the route
+  tests never invoke handlers despite claiming behavioral coverage. Recommend
+  fixing the type errors and empty-filter behavior, then adding real route
+  tests before marking this story passed.

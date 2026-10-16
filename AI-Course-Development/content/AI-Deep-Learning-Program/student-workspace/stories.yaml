@@ -128,5 +128,12 @@ stories:
     when: the list renders
     then: I see an empty state with a way to clear the filters.
     type: edge_case
-  review_status: passed
-  review_notes: Implementation fully satisfies all 3 AC for PANTRY-005. Search and filter functionality is implemented in backend service, API routes, and frontend components. All AC have passing tests covering positive cases, edge cases (empty filters), and error scenarios. Code follows declared tech stack (Fastify, Prisma, React hooks, TypeScript).
+  review_status: changes_requested
+  review_notes: The feature is functionally complete against the plan and all
+    22 tests pass, but three issues block a clean pass: the API does not
+    typecheck (fastify.prisma augmentation missing, Date-vs-string mismatches,
+    no tsconfig), the backend returns an empty array for empty filters so the
+    real initial pantry view is always empty (masked by test mocks), and the
+    route tests never invoke handlers despite claiming behavioral coverage.
+    Recommend fixing the type errors and empty-filter behavior, then adding
+    real route tests before marking this story passed.

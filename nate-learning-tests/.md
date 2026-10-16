@@ -1,0 +1,28 @@
+# I4: Color Palette Generator — Requirements
+
+**Difficulty:** Intermediate
+**Primary challenge areas:** UI (high), Algorithm (medium), Math (medium), Visualization (medium)
+
+---
+
+## Challenge
+
+Generate harmonious color palettes using four color theory rules: complementary (colors opposite on the color wheel), triadic (three colors equidistant on the wheel), analogous (adjacent colors on the wheel), and split-complementary (a base color plus the two colors adjacent to its complement). Given a user-selected base color, display the generated palette with hex and RGB values, WCAG contrast ratios for text-on-background accessibility, and a live preview component showing the palette applied to a sample UI.
+
+---
+
+## Key Technical Requirements
+
+- HSL color space manipulation for harmony calculations — color theory harmonies are defined in hue angles, which requires working in HSL and then converting to hex/RGB for display
+- WCAG contrast ratio calculation using the relative luminance formula: luminance = 0.2126R + 0.7152G + 0.0722B, where R, G, B are linearized (gamma-corrected) channel values
+- Correct geometric relationships for each harmony type: complementary = 180°, triadic = 120° apart, analogous = ±30°, split-complementary = 180° ± 30°
+- Live preview component that applies an arbitrary palette to a UI mockup without hardcoded colors
+
+---
+
+## Optional Stretch Goals
+
+- Dominant color extraction from an uploaded image to seed the palette using color quantization
+- Color blindness simulation showing how the palette appears to someone with protanopia, deuteranopia, or tritanopia
+- CSS custom property export (`--primary`, `--secondary`, etc.) or Tailwind config export
+- Palette locking: allow individual palette colors to be locked while the rest are regenerated

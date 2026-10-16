@@ -48,9 +48,3 @@ Inputs: `plan.yaml` (must exist; the skill consumes the plan, not the raw story)
 | EC6 | Implementation stays in scope and has no dead code | (1) No source files exist outside `files_affected` + test files + `IMPLEMENTATION.md`. (2) No behavior for AC not in the plan. (3) No extra features or "nice-to-haves". (4) No dead code (unused functions, unused imports, commented-out code). (5) Every file in `files_affected` is actually used by at least one test. Verify: `git status` shows only expected files; `grep -r "// TODO\|// FIXME\|// XXX" src/` returns 0 matches; code review confirms no dead code. |
 
 
-# Evaluation Criteria: review-implementation
-
-EC 1: The implementation must match the plan (plan.yaml) with no gaps or failures. 
-EC 2: Every AC is confirmed to be completed. 
-EC 3: If issue found, it must be documented to explain why it matters and the suggested improvement.
-EC 4: Severity level must be assigned to each issue.
