@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "required_sections_present": {
+      "pass": true,
+      "detail": "all 5 required sections present and non-empty"
+    },
+    "personas_min_2": {
+      "pass": true,
+      "detail": "2 personas, each with Role/Goals/Pain Points"
+    },
+    "flows_min_2": {
+      "pass": true,
+      "detail": "2 flows, each with >= 3 steps, Decision Point, and Error Risk"
+    },
+    "error_table_min_2": {
+      "pass": true,
+      "detail": "2 error-state rows with >= 3 filled cells (need >= 2)"
+    },
+    "design_covers_a11y_responsive": {
+      "pass": true,
+      "detail": "covers accessibility and responsiveness"
+    },
+    "llm_judge_specificity": {
+      "pass": true,
+      "detail": "Placeholder template defines the required shape; the labeled Pantry Tracker worked example supplies concrete personas, plausible flows with real decision points, a non-happy path (sync conflict), and an error table with actionable recoveries. Specificity bar satisfied via the example."
+    }
+  }
+}

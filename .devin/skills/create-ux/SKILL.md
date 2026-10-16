@@ -35,7 +35,55 @@ follow-up questions.
 
 ### Output Format
 
-Write a structured UX guidance document as a markdown file. The output should follow this structure (shown with example content):
+Write a structured UX guidance document as a markdown file with this structure (replace every bracketed placeholder with content derived from your input):
+
+```markdown
+# UX Guidance: [Feature Name]
+
+## User Personas
+### [Persona 1 Name]
+- **Role:** [Who this user is, in one line]
+- **Goals:** [What they want to accomplish]
+- **Pain Points:** [What frustrates them today]
+
+### [Persona 2 Name]
+- **Role:** [Who this user is, in one line]
+- **Goals:** [What they want to accomplish]
+- **Pain Points:** [What frustrates them today]
+
+## User Flows
+### Flow 1: [Primary user task]
+1. [Step — what the user does or sees]
+2. [Step — system response]
+3. [Step — outcome]
+- **Decision Point:** [Where the user chooses between meaningful options]
+- **Error Risk:** [What can go wrong in this flow]
+
+### Flow 2: [Secondary user task]
+1. [Step — what the user does or sees]
+2. [Step — system response]
+3. [Step — outcome]
+- **Decision Point:** [Where the user chooses between meaningful options]
+- **Error Risk:** [What can go wrong in this flow]
+
+## Key Interactions
+- [UI pattern]: [expected behavior]
+- [UI pattern]: [expected behavior]
+
+## Design Considerations
+- Accessibility: [keyboard, screen reader, contrast, and non-color cues]
+- Responsiveness: [target screen sizes, breakpoints, touch targets]
+
+## Error States
+| Scenario | User Sees | Recovery Action |
+|----------|-----------|-----------------|
+| [What goes wrong] | [Message or state shown] | [How the user recovers] |
+| [What goes wrong] | [Message or state shown] | [How the user recovers] |
+```
+
+### Example output
+
+The following is a filled example showing the expected specificity — do not copy its content; derive everything from your input.
 
 ```markdown
 # UX Guidance: Pantry Tracker
@@ -85,7 +133,3 @@ Write a structured UX guidance document as a markdown file. The output should fo
 - **Reads:** PRD and architecture (provided as input by the caller)
 - **Writes:** A markdown UX guidance document (location specified by the caller)
 - **Consumed by:** `create-epics-stories` (uses UX as input for story breakdown)
-
----
-
-*Context and Constraints are intentionally absent. Add them during EDD iteration in Sessions 1-3.*

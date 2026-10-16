@@ -1,0 +1,1 @@
+{"SKILL": {"pass": true, "granular": true, "deps_sane": true, "ac_covered": true, "real_risks": true, "honest_unknowns": true, "specific": true, "notes": "Worked example with two session-sized tasks in real dependency order (model before endpoint), concrete files and risks, AC refs claimed, and an honest open question."}}

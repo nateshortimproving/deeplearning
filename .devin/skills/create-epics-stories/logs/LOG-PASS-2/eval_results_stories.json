@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "required_structure": {
+      "pass": true,
+      "detail": "epic + stories present with required fields"
+    },
+    "stories_min_2": {
+      "pass": true,
+      "detail": "2 stories, each with all required fields"
+    },
+    "ac_per_story": {
+      "pass": true,
+      "detail": "4 AC across stories, each fully fielded"
+    },
+    "negative_or_edge_ac": {
+      "pass": true,
+      "detail": "found AC with type negative or edge_case"
+    },
+    "review_status_pending": {
+      "pass": true,
+      "detail": "all 2 review_status values are 'pending'"
+    },
+    "llm_judge_specificity": {
+      "pass": true,
+      "detail": "Placeholder schema defines the structure; the labeled pantry example shows two independently deliverable stories with testable Gherkin AC, positive plus negative/edge coverage, and no implementation detail. Specificity bar satisfied via the example."
+    }
+  }
+}

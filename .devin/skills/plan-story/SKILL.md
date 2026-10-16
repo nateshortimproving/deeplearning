@@ -37,25 +37,60 @@ Select the story to plan (by story_id or the first story with review_status: "pe
 
 ### Output Format
 
-Write your output to `plan.yaml` in the workspace root using this schema:
+Write your output to `plan.yaml` in the workspace root using this schema (replace every `<placeholder>` with content derived from your input; IDs shown are generic — use the story's real ID):
 
 ```yaml
-story_id: <string>                   # References the story from stories.yaml
-plan_version: <string>               # Semantic version or date
+story_id: STORY-001
+plan_version: "1.0"
 source_story:
-  title: <string>                    # Copied from stories.yaml
-  user_story: <string>               # Copied from stories.yaml
+  title: <story title, copied from stories.yaml>
+  user_story: <user_story text, copied verbatim from stories.yaml>
 
 tasks:
-  - id: <string>                     # Task identifier (e.g., "PANTRY-001-T1")
-    description: <string>            # What to do (verb-first)
-    dependencies: [<string>]         # Task IDs this depends on (empty list if none)
-    files_affected: [<string>]       # Expected files to create or modify
-    risks: [<string>]                # Known risks or unknowns
-    acceptance_criteria_refs: [<string>]  # Which AC IDs this task addresses
+  - id: STORY-001-T1
+    description: <what this task builds — small enough for one session>
+    dependencies: []
+    files_affected: [<files created or modified>]
+    risks: [One risk or unknown for this task]
+    acceptance_criteria_refs: [STORY-001-AC1]
+  - id: STORY-001-T2
+    description: <what this task builds>
+    dependencies: [STORY-001-T1]
+    files_affected: [<files created or modified>]
+    risks: [One risk or unknown for this task]
+    acceptance_criteria_refs: [STORY-001-AC1, STORY-001-AC2]
 
-assumptions: [<string>]              # Assumptions made during planning
-open_questions: [<string>]           # Unresolved questions for the team
+assumptions: [<assumption made while planning>]
+open_questions: [<question needing an answer, or "none">]
+```
+
+### Example output
+
+The following is a filled example showing the expected specificity — do not copy its content; derive everything from your input.
+
+```yaml
+story_id: PANTRY-001
+plan_version: "1.0"
+source_story:
+  title: Add a pantry item manually
+  user_story: As a home cook, I want to add pantry items with quantity and expiry, so that I can see what I have on hand.
+
+tasks:
+  - id: PANTRY-001-T1
+    description: Create the PantryItem Prisma model and migration
+    dependencies: []
+    files_affected: [prisma/schema.prisma, prisma/migrations/]
+    risks: [An item table may already exist under a different name]
+    acceptance_criteria_refs: [PANTRY-001-AC1]
+  - id: PANTRY-001-T2
+    description: Build the add-item endpoint with name/expiry validation
+    dependencies: [PANTRY-001-T1]
+    files_affected: [src/routes/pantry.ts, tests/pantry.test.ts]
+    risks: [Expiry may arrive as month-only dates from the client]
+    acceptance_criteria_refs: [PANTRY-001-AC1, PANTRY-001-AC2]
+
+assumptions: [Prisma is already configured and migrations run in CI]
+open_questions: [Should expiry accept month-only dates?]
 ```
 
 ### Schema Rules

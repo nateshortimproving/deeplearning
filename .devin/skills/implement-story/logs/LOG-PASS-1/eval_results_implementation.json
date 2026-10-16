@@ -1,0 +1,24 @@
+{
+  "SKILL": {
+    "summary_sections": {
+      "pass": true,
+      "detail": "all 4 summary sections present with content"
+    },
+    "task_refs_listed": {
+      "pass": true,
+      "detail": "1 task entries listed (no id pattern)"
+    },
+    "ac_refs_listed": {
+      "pass": true,
+      "detail": "4 AC ids referenced (PANTRY-001-AC1, PANTRY-001-AC2, PANTRY-001-AC1, PANTRY-001-AC2)"
+    },
+    "test_files_listed": {
+      "pass": true,
+      "detail": "1 test file(s) listed"
+    },
+    "llm_judge_specificity": {
+      "pass": true,
+      "detail": "Worked-example template shows traceable task ids with AC refs, a stated assumption, a reasoned deviation matching the Fastify/Prisma stack, and a concrete test file path."
+    }
+  }
+}

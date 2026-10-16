@@ -1,0 +1,1 @@
+{"SKILL": {"pass": true, "actionable": true, "honest_severity": true, "ac_grounded": true, "verdict_honest": true, "summary_quality": true, "specific": true, "notes": "Worked example shows a concrete major edge_case finding with an actionable fix and AC ref, honest partial AC assessment, a consistent changes_requested verdict, and pipeline-aligned Context/Constraints."}}

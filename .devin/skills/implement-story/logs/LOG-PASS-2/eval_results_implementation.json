@@ -1,0 +1,24 @@
+{
+  "SKILL": {
+    "summary_sections": {
+      "pass": true,
+      "detail": "all 4 summary sections present with content"
+    },
+    "task_refs_listed": {
+      "pass": true,
+      "detail": "1 task entries listed (no id pattern)"
+    },
+    "ac_refs_listed": {
+      "pass": true,
+      "detail": "8 AC ids referenced (STORY-001-AC1, STORY-001-AC2, STORY-001-AC1, STORY-001-AC2, PANTRY-001-AC1, PANTRY-001-AC2, PANTRY-001-AC1, PANTRY-001-AC2)"
+    },
+    "test_files_listed": {
+      "pass": true,
+      "detail": "1 test file(s) listed"
+    },
+    "llm_judge_specificity": {
+      "pass": true,
+      "detail": "Placeholder summary template defines the required sections; the labeled pantry example shows tasks mapped to AC refs, an honest deviation with rationale, and a real test file. Specificity bar satisfied via the example."
+    }
+  }
+}

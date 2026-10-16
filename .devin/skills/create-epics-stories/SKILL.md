@@ -37,26 +37,94 @@ Your output is consumed by `plan-story`, which turns each story into implementat
 
 ### Output Format
 
-Write your output to `stories.yaml` in the workspace root using this schema:
+Write your output to `stories.yaml` in the workspace root using this schema (replace every `<placeholder>` with content derived from your input; IDs shown are generic — use your own project prefix):
 
 ```yaml
 epic:
-  name: <string>                    # Epic name
-  description: <string>              # 1-3 sentence epic description
-  source_prd: <string>               # Reference to PRD section or filename
+  name: <epic name>
+  description: <what this epic delivers and for whom>
+  source_prd: <path to the PRD section this epic implements>
 
 stories:
-  - id: <string>                     # Unique story identifier (e.g., "PANTRY-001")
-    title: <string>                  # Story title
-    user_story: <string>             # "As a [role], I want [capability], so that [benefit]"
+  - id: STORY-001
+    title: <story title>
+    user_story: As a <role from the PRD>, I want <capability>, so that <benefit>.
     acceptance_criteria:
-      - id: <string>                  # AC identifier (e.g., "PANTRY-001-AC1")
-        given: <string>              # Given context/precondition
-        when: <string>               # When action/event
-        then: <string>               # Then expected outcome
-        type: <string>               # "positive" | "negative" | "edge_case"
-    review_status: <string>          # Always "pending" on initial creation
-    review_notes: <string>           # Empty string on initial creation
+      - id: STORY-001-AC1
+        given: <starting state>
+        when: <user action>
+        then: <observable outcome>
+        type: positive
+      - id: STORY-001-AC2
+        given: <starting state>
+        when: <invalid or boundary input>
+        then: <error or edge behavior>
+        type: negative
+    review_status: pending
+    review_notes: ""
+
+  - id: STORY-002
+    title: <story title>
+    user_story: As a <role from the PRD>, I want <capability>, so that <benefit>.
+    acceptance_criteria:
+      - id: STORY-002-AC1
+        given: <starting state>
+        when: <user action>
+        then: <observable outcome>
+        type: positive
+      - id: STORY-002-AC2
+        given: <starting state>
+        when: <invalid or boundary input>
+        then: <error or edge behavior>
+        type: edge_case
+    review_status: pending
+    review_notes: ""
+```
+
+### Example output
+
+The following is a filled example showing the expected specificity — do not copy its content; derive everything from your input.
+
+```yaml
+epic:
+  name: Pantry Tracking
+  description: Track pantry contents, expiration dates, and shopping lists for a single-user household.
+  source_prd: prd.md#pantry-tracker-pwa
+
+stories:
+  - id: PANTRY-001
+    title: Add a pantry item manually
+    user_story: As a home cook, I want to add pantry items with quantity and expiry, so that I can see what I have on hand.
+    acceptance_criteria:
+      - id: PANTRY-001-AC1
+        given: The user is on the pantry list
+        when: They submit the add-item form with name, quantity, and expiry
+        then: The item appears in the pantry list
+        type: positive
+      - id: PANTRY-001-AC2
+        given: The add-item form is open
+        when: The user submits without a name
+        then: An error is shown and no item is saved
+        type: negative
+    review_status: pending
+    review_notes: ""
+
+  - id: PANTRY-002
+    title: Get expiry alerts
+    user_story: As a home cook, I want items nearing expiry flagged, so that I use food before it goes to waste.
+    acceptance_criteria:
+      - id: PANTRY-002-AC1
+        given: A pantry item expires within 3 days
+        when: The user opens the pantry list
+        then: The item shows an expiring-soon indicator
+        type: positive
+      - id: PANTRY-002-AC2
+        given: A pantry item has already expired
+        when: The user opens the pantry list
+        then: The item shows an expired indicator distinct from expiring-soon
+        type: edge_case
+    review_status: pending
+    review_notes: ""
 ```
 
 ### Schema Rules

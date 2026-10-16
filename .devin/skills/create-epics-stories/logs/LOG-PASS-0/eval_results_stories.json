@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "required_structure": {
+      "pass": true,
+      "detail": "epic + stories present with required fields"
+    },
+    "stories_min_2": {
+      "pass": false,
+      "detail": "1 stories found (need >= 2)"
+    },
+    "ac_per_story": {
+      "pass": false,
+      "detail": "AC problems: <string> (1 AC)"
+    },
+    "negative_or_edge_ac": {
+      "pass": false,
+      "detail": "no negative or edge_case AC found"
+    },
+    "review_status_pending": {
+      "pass": false,
+      "detail": "non-pending review_status: <string"
+    },
+    "llm_judge_specificity": {
+      "pass": false,
+      "detail": "YAML schema with <string> placeholders - defines structure but contains no concrete stories, real AC, or negative/edge_case coverage to judge."
+    }
+  }
+}

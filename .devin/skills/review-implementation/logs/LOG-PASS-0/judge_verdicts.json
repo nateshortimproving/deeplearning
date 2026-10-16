@@ -1,0 +1,1 @@
+{"SKILL": {"pass": false, "actionable": false, "honest_severity": false, "ac_grounded": false, "verdict_honest": false, "summary_quality": false, "specific": false, "notes": "YAML schema with <string> placeholders and weak Context/Constraints - structure defined but no concrete findings, severity judgment, or verdict to grade."}}

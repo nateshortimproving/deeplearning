@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "plan_header": {
+      "pass": true,
+      "detail": "all plan header fields present"
+    },
+    "tasks_min_2": {
+      "pass": false,
+      "detail": "1 tasks found (need >= 2)"
+    },
+    "refs_and_files_nonempty": {
+      "pass": true,
+      "detail": "all tasks have non-empty AC refs and files_affected"
+    },
+    "deps_backward_only": {
+      "pass": false,
+      "detail": "<string> depends on unknown/later <string>"
+    },
+    "risk_per_task": {
+      "pass": false,
+      "detail": "tasks with empty risks: <string>"
+    },
+    "llm_judge_specificity": {
+      "pass": false,
+      "detail": "YAML schema with <string> placeholders and a single example task - structure is defined but no concrete tasks, dependencies, risks, or assumptions to grade."
+    }
+  }
+}

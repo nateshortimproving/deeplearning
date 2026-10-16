@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "review_header": {
+      "pass": true,
+      "detail": "all review fields present"
+    },
+    "verdict_valid": {
+      "pass": false,
+      "detail": "verdict '<string>' not in ['changes_requested', 'failed', 'passed']"
+    },
+    "issues_well_formed": {
+      "pass": false,
+      "detail": "<string> (severity '<string>'); <string> (category '<string>')"
+    },
+    "ac_assessment_valid": {
+      "pass": false,
+      "detail": "<string> (status '<string>')"
+    },
+    "verdict_consistent": {
+      "pass": true,
+      "detail": "verdict '<string>' backed by findings"
+    },
+    "llm_judge_specificity": {
+      "pass": false,
+      "detail": "YAML schema with <string> placeholders and weak Context/Constraints - structure defined but no concrete findings, severity judgment, or verdict to grade."
+    }
+  }
+}

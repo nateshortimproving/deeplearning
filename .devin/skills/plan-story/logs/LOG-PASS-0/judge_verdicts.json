@@ -1,0 +1,1 @@
+{"SKILL": {"pass": false, "granular": false, "deps_sane": false, "ac_covered": false, "real_risks": false, "honest_unknowns": false, "specific": false, "notes": "YAML schema with <string> placeholders and a single example task - structure is defined but no concrete tasks, dependencies, risks, or assumptions to grade."}}

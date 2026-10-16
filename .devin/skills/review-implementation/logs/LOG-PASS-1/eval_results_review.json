@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "review_header": {
+      "pass": true,
+      "detail": "all review fields present"
+    },
+    "verdict_valid": {
+      "pass": true,
+      "detail": "verdict 'changes_requested' is valid"
+    },
+    "issues_well_formed": {
+      "pass": true,
+      "detail": "1 well-formed issues with valid enums"
+    },
+    "ac_assessment_valid": {
+      "pass": true,
+      "detail": "2 ac_assessment entries with valid status"
+    },
+    "verdict_consistent": {
+      "pass": true,
+      "detail": "verdict 'changes_requested' backed by findings"
+    },
+    "llm_judge_specificity": {
+      "pass": true,
+      "detail": "Worked example shows a concrete major edge_case finding with an actionable fix and AC ref, honest partial AC assessment, a consistent changes_requested verdict, and pipeline-aligned Context/Constraints."
+    }
+  }
+}

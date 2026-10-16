@@ -1,0 +1,1 @@
+{"SKILL": {"pass": false, "independent": false, "testable_ac": false, "no_impl_detail": true, "user_value": false, "failure_coverage": false, "specific": false, "notes": "YAML schema with <string> placeholders - defines structure but contains no concrete stories, real AC, or negative/edge_case coverage to judge."}}

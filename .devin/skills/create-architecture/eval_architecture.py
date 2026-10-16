@@ -66,7 +66,7 @@ REQUIRED_SECTIONS = [
     ("overview", "Overview",
      [[r"overview", r"summary", r"introduction"]]),
     ("components", "Components",
-     [[r"component"]]),
+     [[r"^components?\b"]]),
     ("data_flow", "Data Flow",
      [[r"data[ -]?flow", r"flow of data"]]),
     ("decisions", "Key Technical Decisions",

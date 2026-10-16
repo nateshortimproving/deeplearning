@@ -1,0 +1,1 @@
+{"SKILL": {"pass": true, "independent": true, "testable_ac": true, "no_impl_detail": true, "user_value": true, "failure_coverage": true, "specific": true, "notes": "Worked example with two concrete, independently deliverable stories; AC are observable Given/When/Then behavior including negative and edge_case types; no implementation detail."}}

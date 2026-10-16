@@ -1,0 +1,24 @@
+{
+  "SKILL": {
+    "summary_sections": {
+      "pass": false,
+      "detail": "missing: Assumptions; Deviations; Test Files"
+    },
+    "task_refs_listed": {
+      "pass": true,
+      "detail": "1 task entries listed (no id pattern)"
+    },
+    "ac_refs_listed": {
+      "pass": false,
+      "detail": "no AC identifiers referenced"
+    },
+    "test_files_listed": {
+      "pass": false,
+      "detail": "Test Files section missing"
+    },
+    "llm_judge_specificity": {
+      "pass": false,
+      "detail": "Skill specifies an IMPLEMENTATION.md in prose but provides no template - nothing concrete shows what tasks, deviations, or test files look like."
+    }
+  }
+}

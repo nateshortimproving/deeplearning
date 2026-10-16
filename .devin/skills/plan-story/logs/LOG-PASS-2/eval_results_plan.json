@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "plan_header": {
+      "pass": true,
+      "detail": "all plan header fields present"
+    },
+    "tasks_min_2": {
+      "pass": true,
+      "detail": "2 tasks, each with all required fields"
+    },
+    "refs_and_files_nonempty": {
+      "pass": true,
+      "detail": "all tasks have non-empty AC refs and files_affected"
+    },
+    "deps_backward_only": {
+      "pass": true,
+      "detail": "all dependencies point to earlier tasks"
+    },
+    "risk_per_task": {
+      "pass": true,
+      "detail": "every task lists a risk or explicit none"
+    },
+    "llm_judge_specificity": {
+      "pass": true,
+      "detail": "Placeholder schema defines the structure; the labeled pantry example shows granular dependency-ordered tasks with real files, real risks, and full AC coverage. Specificity bar satisfied via the example."
+    }
+  }
+}

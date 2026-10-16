@@ -40,11 +40,45 @@ Use only the plan's `tasks`, `dependencies`, and `acceptance_criteria_refs` as y
 
 Write code files as specified in the plan's `files_affected` fields. Code should be committed to the workspace.
 
-Additionally, write an implementation summary to `IMPLEMENTATION.md` in the same directory as the primary changed component. The summary must include:
-- Which plan tasks were implemented
-- Any assumptions made
-- Any deviations from the plan and why
-- Test file locations
+Additionally, write an implementation summary to `IMPLEMENTATION.md` in the same directory as the primary changed component. The summary must include which plan tasks were implemented, any assumptions made, any deviations from the plan and why, and test file locations — following this structure (replace every `<placeholder>` with content derived from your input; IDs shown are generic — use the story's real IDs):
+
+```markdown
+# Implementation: STORY-001
+
+## Tasks Implemented
+- STORY-001-T1 — <what this task built>
+- STORY-001-T2 — <what this task built> (satisfies STORY-001-AC1, STORY-001-AC2)
+
+## Assumptions
+- <Assumption made while implementing, or "none">
+
+## Deviations
+- <Deviation from the plan and why, or "none">
+
+## Test Files
+- tests/example.test.ts
+```
+
+### Example output
+
+The following is a filled example showing the expected specificity — do not copy its content; derive everything from your input.
+
+```markdown
+# Implementation: PANTRY-001
+
+## Tasks Implemented
+- PANTRY-001-T1 — PantryItem Prisma model and migration
+- PANTRY-001-T2 — Add-item endpoint with validation (satisfies PANTRY-001-AC1, PANTRY-001-AC2)
+
+## Assumptions
+- Expiry dates are stored as ISO date strings; month-only input is rejected.
+
+## Deviations
+- Used Fastify schema validation instead of manual checks — matches the declared stack and covers the negative AC with less code.
+
+## Test Files
+- tests/pantry.test.ts
+```
 
 → Maps to EC5.
 

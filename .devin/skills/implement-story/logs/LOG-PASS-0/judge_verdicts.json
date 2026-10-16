@@ -1,0 +1,1 @@
+{"SKILL": {"pass": false, "traceable": false, "honest_deviations": false, "tests_adequate": false, "arch_aligned": true, "in_scope": true, "specific": false, "notes": "Skill specifies an IMPLEMENTATION.md in prose but provides no template - nothing concrete shows what tasks, deviations, or test files look like."}}

@@ -26,7 +26,47 @@ must not design past.
 
 ### Output Format
 
-Write a structured architecture document as a markdown file. The output should follow this structure (shown with example content):
+Write a structured architecture document as a markdown file with this structure (replace every bracketed placeholder with content derived from your input):
+
+```markdown
+# Architecture: [Feature or Component Name]
+
+## Overview
+[1-2 paragraph summary of the architectural approach — the "why" of the design]
+
+## Components
+### [Component 1 Name]
+- **Responsibility:** [What this component does]
+- **Interfaces:** [What it exposes to other components]
+- **Dependencies:** [What it depends on]
+
+### [Component 2 Name]
+- **Responsibility:** [What this component does]
+- **Interfaces:** [What it exposes to other components]
+- **Dependencies:** [What it depends on]
+
+### [Component 3 Name]
+- **Responsibility:** [What this component does]
+- **Interfaces:** [What it exposes to other components]
+- **Dependencies:** [What it depends on]
+
+## Data Flow
+[Narrative naming every component above — e.g., "Requests enter through [Component 1 Name], are processed by [Component 2 Name], and read from or written to [Component 3 Name]." A diagram may accompany this narrative.]
+
+## Key Technical Decisions
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| [Decision 1] | [Chosen option] | [Why — the tradeoff being made] |
+| [Decision 2] | [Chosen option] | [Why — the tradeoff being made] |
+
+## Constraints
+- [Technical or non-functional limit the design must respect]
+- [Another limit — latency budget, team size, existing infra]
+```
+
+### Example output
+
+The following is a filled example showing the expected specificity — do not copy its content; derive everything from your input.
 
 ```markdown
 # Architecture: Notification Service
@@ -53,7 +93,7 @@ delivers via the right channel — chosen for decoupling and retry support.
 - **Dependencies:** Managed database (e.g., PostgreSQL).
 
 ## Data Flow
-Requests enter through the API Gateway, are processed by the Core Service, and read from or written to the Data Store. [A diagram may accompany this narrative.]
+Requests enter through the API Gateway, are processed by the Core Service, and read from or written to the Data Store.
 
 ## Key Technical Decisions
 | Decision | Choice | Rationale |
@@ -70,7 +110,3 @@ Requests enter through the API Gateway, are processed by the Core Service, and r
 - **Reads:** PRD (provided as input by the caller)
 - **Writes:** A markdown architecture document (location specified by the caller)
 - **Consumed by:** `create-ux` (uses architecture as input), `create-epics-stories` (uses architecture as input)
-
----
-
-*Context and Constraints are intentionally absent. Add them during EDD iteration in Sessions 1-3.*
