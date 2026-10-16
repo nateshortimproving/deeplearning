@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "required_sections_present": {
+      "pass": true,
+      "detail": "all 5 required sections present and non-empty"
+    },
+    "components_min_3": {
+      "pass": true,
+      "detail": "3 components, each with a Responsibility entry"
+    },
+    "decisions_table_min_2": {
+      "pass": true,
+      "detail": "2 decision rows with >= 3 filled cells (need >= 2)"
+    },
+    "constraints_min_2": {
+      "pass": true,
+      "detail": "3 constraint items (need >= 2)"
+    },
+    "no_orphan_components": {
+      "pass": true,
+      "detail": "all components referenced in Data Flow"
+    },
+    "llm_judge_specificity": {
+      "pass": false,
+      "detail": "Component examples are now concrete (REST, PostgreSQL, real responsibilities) and consistent with Data Flow, but decisions remain bracketed placeholders and the document is a format template rather than a feature architecture derived from a PRD."
+    }
+  }
+}

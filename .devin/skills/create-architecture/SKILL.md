@@ -13,36 +13,57 @@ You are a senior software architect with experience designing scalable, maintain
 ## Task
 Produce a system architecture document for the feature or component described in the input (typically a PRD). Include the major components, their responsibilities, how they interact, and key technical decisions.
 
+## Context
+Your input is a PRD produced by `create-prd`. Use its Functional Requirements
+to derive components, its Goals & Success Metrics to set the non-functional
+bar (scale, latency, reliability), and its Out of Scope as boundaries you
+must not design past.
+
+## Constraints
+- **No orphan components:** Every named component in the Components section must appear in the Data Flow narrative or diagram reference.
+- **Decision table completeness:** Include at least two decision rows, each with Decision, Choice, and Rationale columns filled.
+- **Component count:** Include at least three components, each with Responsibility, Interfaces, and Dependencies.
+
 ### Output Format
 
-Write a structured architecture document as a markdown file. The output should include these sections:
+Write a structured architecture document as a markdown file. The output should follow this structure (shown with example content):
 
 ```markdown
-# Architecture: [Feature Name]
+# Architecture: Notification Service
 
 ## Overview
-[1-2 paragraph summary of the architectural approach]
+A service that delivers email and in-app notifications to users. It uses an
+event-driven design — producers publish events to a queue and a worker
+delivers via the right channel — chosen for decoupling and retry support.
 
 ## Components
-### [Component 1 Name]
-- **Responsibility:** [What this component does]
-- **Interfaces:** [What it exposes to other components]
-- **Dependencies:** [What it depends on]
+### API Gateway
+- **Responsibility:** Accepts external requests, enforces authentication, and routes traffic to internal services.
+- **Interfaces:** Public REST/HTTPS endpoints; internal service calls.
+- **Dependencies:** Identity provider, downstream services.
 
-### [Component 2 Name]
-[...same structure...]
+### Core Service
+- **Responsibility:** Implements the feature's business logic and orchestrates work.
+- **Interfaces:** Internal API consumed by the API Gateway.
+- **Dependencies:** Data Store, external integrations.
+
+### Data Store
+- **Responsibility:** Persists domain state and answers queries efficiently.
+- **Interfaces:** Database access via a repository or ORM layer.
+- **Dependencies:** Managed database (e.g., PostgreSQL).
 
 ## Data Flow
-[How data moves through the system — can include a diagram reference]
+Requests enter through the API Gateway, are processed by the Core Service, and read from or written to the Data Store. [A diagram may accompany this narrative.]
 
 ## Key Technical Decisions
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| [Decision 1] | [Choice] | [Why] |
+| Datastore | PostgreSQL | Team expertise; JSONB covers varied payloads |
+| API style | REST | No realtime requirement; simplest to consume |
 
 ## Constraints
-- [Technical constraint 1]
-- [Non-functional requirement 1]
+- Must deploy to the existing Kubernetes cluster.
+- p95 latency under 500ms on public endpoints.
 ```
 
 ### File Contract

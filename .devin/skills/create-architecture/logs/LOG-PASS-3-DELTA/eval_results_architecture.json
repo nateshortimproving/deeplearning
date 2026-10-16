@@ -1,0 +1,54 @@
+{
+  "demo-architecture-output": {
+    "required_sections_present": {
+      "pass": false,
+      "detail": "missing: Overview; Data Flow; Constraints"
+    },
+    "components_min_3": {
+      "pass": true,
+      "detail": "4 components, each with a Responsibility entry"
+    },
+    "decisions_table_min_2": {
+      "pass": false,
+      "detail": "no markdown table found in Key Technical Decisions"
+    },
+    "constraints_min_2": {
+      "pass": false,
+      "detail": "Constraints section missing"
+    },
+    "no_orphan_components": {
+      "pass": false,
+      "detail": "Data Flow section missing"
+    },
+    "llm_judge_specificity": {
+      "pass": false,
+      "detail": "Content is specific and tradeoffs are real (last-write-wins caveat, no-auth deferral), but the doc has no Constraints section, decisions are unstructured bullets, and the Service Worker / Express API Gateway / IndexedDB appear in the interaction diagram without being named components."
+    }
+  },
+  "architecture": {
+    "required_sections_present": {
+      "pass": true,
+      "detail": "all 5 required sections present and non-empty"
+    },
+    "components_min_3": {
+      "pass": true,
+      "detail": "6 components, each with a Responsibility entry"
+    },
+    "decisions_table_min_2": {
+      "pass": true,
+      "detail": "4 decision rows with >= 3 filled cells (need >= 2)"
+    },
+    "constraints_min_2": {
+      "pass": true,
+      "detail": "4 constraint items (need >= 2)"
+    },
+    "no_orphan_components": {
+      "pass": true,
+      "detail": "all components referenced in Data Flow"
+    },
+    "llm_judge_specificity": {
+      "pass": true,
+      "detail": "All sections match definitions with concrete tech choices (IndexedDB, TypeScript/Express, PostgreSQL), rationale states tradeoffs tied to PRD constraints, Data Flow exercises every named component, and scope respects PRD out-of-scope boundaries."
+    }
+  }
+}

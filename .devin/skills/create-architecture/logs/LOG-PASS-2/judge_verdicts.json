@@ -1,0 +1,1 @@
+{"SKILL": {"pass": true, "definition_alignment": true, "specific": true, "rationale_quality": true, "consistent": true, "traceable": true, "notes": "Template is now a concrete worked example - named feature, real technologies (PostgreSQL, REST, Kubernetes), tradeoff rationale, and Data Flow consistent with all named components."}}
