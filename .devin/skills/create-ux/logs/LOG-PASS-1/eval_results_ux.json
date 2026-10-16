@@ -1,0 +1,28 @@
+{
+  "SKILL": {
+    "required_sections_present": {
+      "pass": true,
+      "detail": "all 5 required sections present and non-empty"
+    },
+    "personas_min_2": {
+      "pass": true,
+      "detail": "2 personas, each with Role/Goals/Pain Points"
+    },
+    "flows_min_2": {
+      "pass": false,
+      "detail": "1 flows found (need >= 2)"
+    },
+    "error_table_min_2": {
+      "pass": false,
+      "detail": "1 error-state rows with >= 3 filled cells (need >= 2)"
+    },
+    "design_covers_a11y_responsive": {
+      "pass": true,
+      "detail": "covers accessibility and responsiveness"
+    },
+    "llm_judge_specificity": {
+      "pass": false,
+      "detail": "Still a placeholder template - two stub personas but only one stub flow and one error row, all bracketed content."
+    }
+  }
+}
