@@ -1,0 +1,20 @@
+{
+  "SKILL": {
+    "required_sections_present": {
+      "pass": true,
+      "detail": "all 7 required sections present"
+    },
+    "sections_non_empty": {
+      "pass": true,
+      "detail": "every required section has >= 1 sentence"
+    },
+    "out_of_scope_min_items": {
+      "pass": true,
+      "detail": "2 out-of-scope items (need >= 2)"
+    },
+    "llm_judge_specificity": {
+      "pass": null,
+      "detail": "no judge_verdicts.json (run --write-judge-prompts first)"
+    }
+  }
+}
