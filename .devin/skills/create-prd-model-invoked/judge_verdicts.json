@@ -1,0 +1,10 @@
+{
+  "PRD-plant-watering-reminder": {
+    "pass": false,
+    "definition_alignment": true,
+    "specific": true,
+    "prioritized": false,
+    "consistent": true,
+    "notes": "All sections match definitions with concrete, measurable content, but Functional Requirements lack explicit priority labels (P0/P1/P2); SKILL.md output template does not request prioritization, so this is a skill/eval mismatch."
+  }
+}
